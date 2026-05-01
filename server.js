@@ -417,14 +417,17 @@ app.get('/api/stats', async (req, res) => {
 
 // ─── Start Server (HTTP or HTTPS) ─────────────────────────────────────────────
 const https = require('https');
-const http  = require('http');
+// Only start server if running locally (not on Vercel)
+if (!process.env.VERCEL) {
+  const http  = require('http');
+  const https = require('https');
 
-const USE_HTTPS = process.env.USE_HTTPS === 'true' || process.env.USE_HTTPS === '1';
-const CERT_PATH = process.env.SSL_CERT_PATH || path.join(__dirname, 'certs', 'cert.pem');
-const KEY_PATH  = process.env.SSL_KEY_PATH  || path.join(__dirname, 'certs', 'key.pem');
+  const USE_HTTPS = process.env.USE_HTTPS === 'true' || process.env.USE_HTTPS === '1';
+  const CERT_PATH = process.env.SSL_CERT_PATH || path.join(__dirname, 'certs', 'cert.pem');
+  const KEY_PATH  = process.env.SSL_KEY_PATH  || path.join(__dirname, 'certs', 'key.pem');
 
-function banner(scheme) {
-  console.log(`
+  function banner(scheme) {
+    console.log(`
   ╔════════════════════════════════════════════╗
   ║   United Group Inc. — Web Server          ║
   ║   ${scheme}://localhost:${PORT}${' '.repeat(Math.max(0, 25 - scheme.length - String(PORT).length))}║
@@ -433,20 +436,21 @@ function banner(scheme) {
   ║   Admin:    ${scheme}://localhost:${PORT}/admin.html${' '.repeat(Math.max(0, 8 - scheme.length - String(PORT).length))}║
   ╚════════════════════════════════════════════╝
   `);
-}
-
-if (USE_HTTPS && fs.existsSync(CERT_PATH) && fs.existsSync(KEY_PATH)) {
-  const opts = {
-    cert: fs.readFileSync(CERT_PATH),
-    key:  fs.readFileSync(KEY_PATH)
-  };
-  https.createServer(opts, app).listen(PORT, () => banner('https'));
-} else {
-  if (USE_HTTPS) {
-    console.warn('[!] USE_HTTPS=true but cert/key not found at:', CERT_PATH, KEY_PATH);
-    console.warn('    Falling back to HTTP. Run: node scripts/gen-cert.js');
   }
-  http.createServer(app).listen(PORT, () => banner('http'));
+
+  if (USE_HTTPS && fs.existsSync(CERT_PATH) && fs.existsSync(KEY_PATH)) {
+    const opts = {
+      cert: fs.readFileSync(CERT_PATH),
+      key:  fs.readFileSync(KEY_PATH)
+    };
+    https.createServer(opts, app).listen(PORT, () => banner('https'));
+  } else {
+    if (USE_HTTPS) {
+      console.warn('[!] USE_HTTPS=true but cert/key not found at:', CERT_PATH, KEY_PATH);
+      console.warn('    Falling back to HTTP. Run: node scripts/gen-cert.js');
+    }
+    http.createServer(app).listen(PORT, () => banner('http'));
+  }
 }
 
 module.exports = app;
