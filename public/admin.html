@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | United Group Restoration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' }, dark: { 900:'#0a0a0f', 800:'#111118', 700:'#1a1a2e', 600:'#16213e', 500:'#1f2541' } } } } }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .status-new { background: rgba(59,130,246,0.1); color: #93c5fd; border-color: rgba(59,130,246,0.2); }
+    .status-contacted { background: rgba(234,179,8,0.1); color: #fde047; border-color: rgba(234,179,8,0.2); }
+    .status-booked { background: rgba(249,115,22,0.1); color: #fb923c; border-color: rgba(249,115,22,0.2); }
+    .status-quoted { background: rgba(168,85,247,0.1); color: #c084fc; border-color: rgba(168,85,247,0.2); }
+    .status-closed { background: rgba(34,197,94,0.1); color: #86efac; border-color: rgba(34,197,94,0.2); }
+    .modal-overlay { background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+  </style>
+</head>
+<body class="bg-dark-900 text-white min-h-screen">
+
+<!-- Top bar -->
+<nav class="border-b border-white/5 bg-dark-800/80 backdrop-blur-xl sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-black text-sm">UG</div>
+      <span class="font-bold">Admin <span class="text-brand-400">Dashboard</span></span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="lastRefresh" class="text-xs text-gray-500"></span>
+      <button onclick="loadData()" class="text-sm bg-dark-700 hover:bg-dark-600 border border-white/10 px-3 py-1.5 rounded-lg transition-colors">↻ Refresh</button>
+      <a href="index.html" class="text-sm text-gray-400 hover:text-white transition-colors">← Site</a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+
+  <!-- Stats Row -->
+  <div id="statsRow" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="bg-dark-800 border border-white/5 rounded-2xl p-5">
+      <div class="text-3xl font-black text-white" id="stat-total">-</div>
+      <div class="text-gray-400 text-sm mt-1">Total Leads</div>
+    </div>
+    <div class="bg-dark-800 border border-white/5 rounded-2xl p-5">
+      <div class="text-3xl font-black text-blue-400" id="stat-new">-</div>
+      <div class="text-gray-400 text-sm mt-1">New</div>
+    </div>
+    <div class="bg-dark-800 border border-white/5 rounded-2xl p-5">
+      <div class="text-3xl font-black text-brand-400" id="stat-booked">-</div>
+      <div class="text-gray-400 text-sm mt-1">Booked</div>
+    </div>
+    <div class="bg-dark-800 border border-white/5 rounded-2xl p-5">
+      <div class="text-3xl font-black text-green-400" id="stat-inspections">-</div>
+      <div class="text-gray-400 text-sm mt-1">Inspections</div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="flex flex-col sm:flex-row gap-3 mb-6">
+    <input type="text" id="searchInput" placeholder="Search by name, email, phone..." class="flex-1 bg-dark-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all text-sm" oninput="debounceSearch()" />
+
+    <div class="flex gap-2">
+      <select id="statusFilter" onchange="loadLeads()" class="bg-dark-800 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+        <option value="all">All Status</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="booked">Booked</option>
+        <option value="quoted">Quoted</option>
+        <option value="closed">Closed</option>
+      </select>
+      <a href="/api/leads/export/csv" class="bg-dark-700 hover:bg-dark-600 border border-white/10 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition-all whitespace-nowrap flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Export CSV
+      </a>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex gap-1 mb-6 bg-dark-800 rounded-xl p-1 w-fit border border-white/5">
+    <button onclick="switchTab('leads')" id="tab-leads" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all bg-dark-700 text-white">Leads</button>
+    <button onclick="switchTab('bookings')" id="tab-bookings" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-gray-400 hover:text-white">Bookings</button>
+  </div>
+
+  <!-- Leads Table -->
+  <div id="leadsPanel">
+    <div class="bg-dark-800 border border-white/5 rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-white/5 text-left">
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Customer</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Contact</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Service</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Date</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTable">
+            <tr><td colspan="6" class="text-center py-12 text-gray-500">Loading leads...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="pagination" class="border-t border-white/5 px-4 py-3 flex items-center justify-between text-sm text-gray-400"></div>
+    </div>
+  </div>
+
+  <!-- Bookings Table -->
+  <div id="bookingsPanel" class="hidden">
+    <div class="bg-dark-800 border border-white/5 rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-white/5 text-left">
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Customer</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Date</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Time</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Address</th>
+              <th class="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTable">
+            <tr><td colspan="5" class="text-center py-12 text-gray-500">Loading bookings...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lead Detail Modal -->
+<div id="leadModal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+  <div class="bg-dark-800 border border-white/10 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between p-6 border-b border-white/5">
+      <h2 class="text-xl font-bold" id="modalTitle">Lead Details</h2>
+      <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl transition-colors leading-none">×</button>
+    </div>
+    <div id="modalContent" class="p-6 space-y-4"></div>
+    <div class="p-6 pt-0 border-t border-white/5 mt-4">
+      <div class="flex gap-3 flex-wrap">
+        <select id="statusSelect" class="bg-dark-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="booked">Booked</option>
+          <option value="quoted">Quoted</option>
+          <option value="closed">Closed</option>
+        </select>
+        <input type="text" id="notesInput" placeholder="Add notes..." class="flex-1 bg-dark-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500" />
+        <button onclick="updateStatus()" class="bg-brand-500 hover:bg-brand-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let allLeads = [];
+  let currentLeadId = null;
+  let currentTab = 'leads';
+  let searchTimeout;
+  let currentOffset = 0;
+  const PAGE_SIZE = 25;
+
+  async function loadData() {
+    await Promise.all([loadStats(), loadLeads()]);
+    document.getElementById('lastRefresh').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+  }
+
+  async function loadStats() {
+    try {
+      const res = await fetch('/api/stats');
+      const data = await res.json();
+      document.getElementById('stat-total').textContent = data.total;
+      document.getElementById('stat-inspections').textContent = data.bookingsTotal;
+
+      const statusMap = {};
+      data.byStatus.forEach(s => statusMap[s.status] = s.count);
+      document.getElementById('stat-new').textContent = statusMap.new || 0;
+      document.getElementById('stat-booked').textContent = statusMap.booked || 0;
+    } catch (e) { console.error('Stats error:', e); }
+  }
+
+  async function loadLeads() {
+    const status = document.getElementById('statusFilter').value;
+    const search = document.getElementById('searchInput').value;
+    const params = new URLSearchParams({ status, limit: PAGE_SIZE, offset: currentOffset });
+    if (search) params.append('search', search);
+
+    try {
+      const res = await fetch(`/api/leads?${params}`);
+      const data = await res.json();
+      allLeads = data.leads;
+      renderLeads(data.leads);
+      renderPagination(data.total);
+    } catch (e) {
+      document.getElementById('leadsTable').innerHTML = '<tr><td colspan="6" class="text-center py-12 text-red-400">Error loading leads</td></tr>';
+    }
+  }
+
+  function renderLeads(leads) {
+    const tbody = document.getElementById('leadsTable');
+    if (!leads.length) {
+      tbody.innerHTML = '<tr><td colspan="6" class="text-center py-12 text-gray-500">No leads found</td></tr>';
+      return;
+    }
+    tbody.innerHTML = leads.map(l => `
+      <tr class="border-b border-white/5 cursor-pointer" onclick="openLead('${l.id}')">
+        <td class="px-4 py-3">
+          <div class="font-medium text-sm">${escHtml(l.name)}</div>
+          <div class="text-xs text-gray-500 font-mono">${l.id.substring(0,8).toUpperCase()}</div>
+        </td>
+        <td class="px-4 py-3">
+          <div class="text-sm text-gray-300">${escHtml(l.email)}</div>
+          <div class="text-xs text-gray-500">${escHtml(l.phone)}</div>
+        </td>
+        <td class="px-4 py-3">
+          <span class="text-xs bg-dark-600 border border-white/10 px-2 py-1 rounded-md capitalize">${l.service_type || 'other'}</span>
+        </td>
+        <td class="px-4 py-3">
+          <span class="status-${l.status} border text-xs px-2.5 py-1 rounded-full font-medium capitalize">${l.status}</span>
+        </td>
+        <td class="px-4 py-3 text-xs text-gray-400 whitespace-nowrap">${formatDate(l.created_at)}</td>
+        <td class="px-4 py-3">
+          <button onclick="event.stopPropagation(); openLead('${l.id}')" class="text-xs text-brand-400 hover:text-brand-300 transition-colors">View →</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderPagination(total) {
+    const el = document.getElementById('pagination');
+    const totalPages = Math.ceil(total / PAGE_SIZE);
+    const currentPage = Math.floor(currentOffset / PAGE_SIZE) + 1;
+    el.innerHTML = `
+      <span>${total} lead${total !== 1 ? 's' : ''} total</span>
+      <div class="flex gap-2">
+        <button onclick="goPage(-1)" ${currentPage <= 1 ? 'disabled' : ''} class="px-3 py-1 bg-dark-700 rounded-lg disabled:opacity-30 hover:bg-dark-600 transition-colors">‹ Prev</button>
+        <span class="px-3 py-1">Page ${currentPage} of ${totalPages}</span>
+        <button onclick="goPage(1)" ${currentPage >= totalPages ? 'disabled' : ''} class="px-3 py-1 bg-dark-700 rounded-lg disabled:opacity-30 hover:bg-dark-600 transition-colors">Next ›</button>
+      </div>
+    `;
+  }
+
+  function goPage(dir) {
+    currentOffset = Math.max(0, currentOffset + dir * PAGE_SIZE);
+    loadLeads();
+  }
+
+  async function loadBookings() {
+    try {
+      const res = await fetch('/api/bookings');
+      const data = await res.json();
+      const tbody = document.getElementById('bookingsTable');
+      if (!data.bookings.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-12 text-gray-500">No bookings yet</td></tr>';
+        return;
+      }
+      tbody.innerHTML = data.bookings.map(b => `
+        <tr class="border-b border-white/5">
+          <td class="px-4 py-3">
+            <div class="font-medium text-sm">${escHtml(b.name)}</div>
+            <div class="text-xs text-gray-500">${escHtml(b.email)}</div>
+          </td>
+          <td class="px-4 py-3 text-sm">${b.date}</td>
+          <td class="px-4 py-3 text-sm text-brand-400">${b.time_slot}</td>
+          <td class="px-4 py-3 text-sm text-gray-300">${escHtml(b.address || '—')}</td>
+          <td class="px-4 py-3"><span class="status-${b.status} border text-xs px-2.5 py-1 rounded-full font-medium capitalize">${b.status}</span></td>
+        </tr>
+      `).join('');
+    } catch (e) {
+      document.getElementById('bookingsTable').innerHTML = '<tr><td colspan="5" class="text-center py-12 text-red-400">Error loading bookings</td></tr>';
+    }
+  }
+
+  async function openLead(id) {
+    currentLeadId = id;
+    document.getElementById('leadModal').classList.remove('hidden');
+    document.getElementById('modalContent').innerHTML = '<div class="text-center py-8 text-gray-400">Loading...</div>';
+
+    try {
+      const res = await fetch(`/api/leads/${id}`);
+      const lead = await res.json();
+      document.getElementById('modalTitle').textContent = lead.name;
+      document.getElementById('statusSelect').value = lead.status;
+      document.getElementById('notesInput').value = lead.notes || '';
+
+      document.getElementById('modalContent').innerHTML = `
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-700 rounded-xl p-4">
+            <div class="text-xs text-gray-500 mb-1">Contact Info</div>
+            <div class="font-semibold">${escHtml(lead.name)}</div>
+            <div class="text-sm text-gray-300">${escHtml(lead.email)}</div>
+            <div class="text-sm text-gray-300">${escHtml(lead.phone)}</div>
+            <div class="text-xs text-gray-500 mt-1">Preferred: ${lead.contact_method || 'email'}</div>
+          </div>
+          <div class="bg-dark-700 rounded-xl p-4">
+            <div class="text-xs text-gray-500 mb-1">Property</div>
+            <div class="text-sm">${escHtml(lead.address)}</div>
+            <div class="mt-2"><span class="text-xs bg-dark-600 border border-white/10 px-2 py-1 rounded-md capitalize">${lead.service_type}</span></div>
+          </div>
+        </div>
+
+        ${lead.damage_description ? `
+        <div class="bg-dark-700 rounded-xl p-4">
+          <div class="text-xs text-gray-500 mb-2">Damage Description</div>
+          <p class="text-sm text-gray-200">${escHtml(lead.damage_description)}</p>
+        </div>` : ''}
+
+        ${lead.photos && lead.photos.length > 0 ? `
+        <div>
+          <div class="text-xs text-gray-500 mb-2">Photos (${lead.photos.length})</div>
+          <div class="grid grid-cols-4 gap-2">
+            ${lead.photos.map(p => `
+              <a href="/api/uploads/${lead.id}/${p.filename}" target="_blank" class="aspect-square bg-dark-700 rounded-lg overflow-hidden block hover:ring-2 ring-brand-500 transition-all">
+                <img src="/api/uploads/${lead.id}/${p.filename}" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-xl\\'>📷</div>'" />
+              </a>
+            `).join('')}
+          </div>
+        </div>` : ''}
+
+        ${lead.bookings && lead.bookings.length > 0 ? `
+        <div class="bg-dark-700 rounded-xl p-4">
+          <div class="text-xs text-gray-500 mb-2">Bookings</div>
+          ${lead.bookings.map(b => `<div class="text-sm"><strong>${b.date}</strong> at ${b.time_slot} — <span class="status-${b.status} text-xs px-2 py-0.5 rounded-full border">${b.status}</span></div>`).join('')}
+        </div>` : ''}
+
+        <div class="text-xs text-gray-600">
+          <span>ID: ${lead.id}</span> • 
+          <span>Submitted: ${formatDate(lead.created_at)}</span> •
+          <span>Updated: ${formatDate(lead.updated_at)}</span>
+        </div>
+      `;
+    } catch (e) {
+      document.getElementById('modalContent').innerHTML = '<div class="text-red-400 text-center py-4">Error loading lead details</div>';
+    }
+  }
+
+  async function updateStatus() {
+    const status = document.getElementById('statusSelect').value;
+    const notes = document.getElementById('notesInput').value;
+    try {
+      await fetch(`/api/leads/${currentLeadId}/status`, {
+        method: 'PATCH',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ status, notes })
+      });
+      closeModal();
+      loadLeads();
+      loadStats();
+    } catch (e) { alert('Failed to update status'); }
+  }
+
+  function closeModal() {
+    document.getElementById('leadModal').classList.add('hidden');
+    currentLeadId = null;
+  }
+
+  function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('leadsPanel').classList.toggle('hidden', tab !== 'leads');
+    document.getElementById('bookingsPanel').classList.toggle('hidden', tab !== 'bookings');
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      const isActive = b.id === `tab-${tab}`;
+      b.className = `tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive ? 'bg-dark-700 text-white' : 'text-gray-400 hover:text-white'}`;
+    });
+    if (tab === 'bookings') loadBookings();
+  }
+
+  function debounceSearch() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => { currentOffset = 0; loadLeads(); }, 300);
+  }
+
+  function formatDate(str) {
+    if (!str) return '—';
+    return new Date(str).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Close modal on overlay click
+  document.getElementById('leadModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('leadModal')) closeModal();
+  });
+
+  // Close modal on Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Init
+  loadData();
+  // Auto-refresh every 60 seconds
+  setInterval(loadData, 60000);
+</script>
+</body>
+</html>

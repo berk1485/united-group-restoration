@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>United Group Inc. | GAF Master Elite Storm Damage & Roofing — Westville, NJ</title>
+  <meta name="description" content="GAF Master Elite roofing & storm damage restoration in Westville, NJ. Serving Haddon, Haddonfield, Westmont, Cherry Hill & all of South Jersey. Free inspections. Insurance claims handled. Call 856-254-8367." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo-united-group.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 50:'#fff7ed', 100:'#ffedd5', 200:'#fed7aa', 300:'#fdba74', 400:'#fb923c', 500:'#f97316', 600:'#ea580c', 700:'#c2410c', 800:'#9a3412', 900:'#7c2d12' },
+            dark: { 900:'#0a0a0f', 800:'#111118', 750:'#141420', 700:'#1a1a2e', 600:'#16213e', 500:'#1f2541' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .hero-bg { background: linear-gradient(135deg,#0a0a0f 0%,#1a1a2e 40%,#16213e 70%,#0f3460 100%); }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+    .gradient-text { background: linear-gradient(135deg,#f97316,#fb923c,#fbbf24); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .pulse-ring { animation: pulse-ring 2s cubic-bezier(.215,.61,.355,1) infinite; }
+    @keyframes pulse-ring { 0% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(249,115,22,.7);} 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(249,115,22,0);} 100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(249,115,22,0);} }
+    .nav-blur { backdrop-filter: blur(20px); background: rgba(10,10,15,.85); }
+    .section-divider { background: linear-gradient(90deg, transparent, rgba(249,115,22,.3), transparent); height:1px; }
+    .ba-card { position: relative; border-radius: 1rem; overflow: hidden; }
+    .ba-card .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background:#0a0a0f; }
+    .ba-card img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display:block; }
+    #serviceAreaMap { aspect-ratio: 16 / 10; background:#0a0a0f; border-radius: 1rem; overflow: hidden; }
+    @media (max-width: 768px) { #serviceAreaMap { aspect-ratio: 4 / 3; } }
+    .star { color:#fbbf24; }
+    .chat-widget { animation: slideUp .3s ease; }
+    @keyframes slideUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+  </style>
+</head>
+<body class="bg-dark-900 text-white">
+
+<!-- ── Top contact strip ─────────────────────────────────────── -->
+<div class="bg-dark-800 border-b border-white/5 text-xs sm:text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2 text-gray-300">
+    <div class="flex items-center gap-4">
+      <a href="tel:8562548367" class="flex items-center gap-1.5 hover:text-brand-400 transition-colors font-semibold">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+        856-254-8367
+      </a>
+      <span class="hidden sm:inline text-gray-500">·</span>
+      <span class="hidden sm:inline text-gray-400">1000 Delsea Dr Ste I-4, Westville NJ 08093</span>
+    </div>
+    <div class="flex items-center gap-3 text-gray-400">
+      <span class="hidden sm:inline">Mon–Sat 7a–7p · 24/7 Emergency</span>
+      <span class="inline-flex items-center gap-1 text-emerald-400 font-semibold"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> GAF Master Elite</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<nav class="sticky top-0 z-50 nav-blur border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-3" aria-label="United Group Inc. home">
+        <img src="/images/logo-united-group.svg" alt="United Group Inc." class="h-9 w-auto" />
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm text-gray-300">
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+        <a href="#gallery" class="hover:text-white transition-colors">Gallery</a>
+        <a href="#service-area" class="hover:text-white transition-colors">Service Area</a>
+        <a href="#testimonials" class="hover:text-white transition-colors">Reviews</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="booking.html" class="hover:text-white transition-colors">Book Inspection</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="tel:8562548367" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-brand-400 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          856-254-8367
+        </a>
+        <a href="form.html" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm transition-colors pulse-ring">Free Quote</a>
+        <button id="mobileMenuBtn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col gap-1 text-sm text-gray-200">
+        <a href="#services" class="px-3 py-2 rounded-lg hover:bg-white/5">Services</a>
+        <a href="#gallery" class="px-3 py-2 rounded-lg hover:bg-white/5">Before / After Gallery</a>
+        <a href="#service-area" class="px-3 py-2 rounded-lg hover:bg-white/5">Service Area</a>
+        <a href="#testimonials" class="px-3 py-2 rounded-lg hover:bg-white/5">Reviews</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-white/5">Contact</a>
+        <a href="booking.html" class="px-3 py-2 rounded-lg hover:bg-white/5">Book Inspection</a>
+        <a href="tel:8562548367" class="px-3 py-2 rounded-lg bg-brand-500/10 text-brand-300 font-semibold mt-1">📞 Call 856-254-8367</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────────── -->
+<section class="hero-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-2 text-brand-400 text-sm font-medium mb-6">
+          <span class="w-2 h-2 bg-brand-400 rounded-full animate-pulse"></span>
+          Available 24/7 for Storm Emergencies
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+          Storm Hit?<br /><span class="gradient-text">We Fix It.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8 max-w-xl">
+          United Group Inc. is a <strong class="text-white">GAF Master Elite</strong> residential roofing contractor in Westville, NJ. We handle storm damage from first call to final nail — roof, siding, interior — and we work directly with your insurance.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
+          <a href="form.html" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-7 py-4 rounded-xl text-base sm:text-lg transition-all hover:scale-105 text-center shadow-lg shadow-brand-500/25">
+            Get Free Inspection →
+          </a>
+          <a href="tel:8562548367" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold px-7 py-4 rounded-xl text-base sm:text-lg transition-all text-center">
+            📞 856-254-8367
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
+          <div class="flex items-center gap-2"><span class="text-brand-400">✓</span> Free, no-obligation inspection</div>
+          <div class="flex items-center gap-2"><span class="text-brand-400">✓</span> 24-hr emergency response</div>
+          <div class="flex items-center gap-2"><span class="text-brand-400">✓</span> Insurance claim experts</div>
+          <div class="flex items-center gap-2"><span class="text-brand-400">✓</span> Licensed · Bonded · Insured</div>
+        </div>
+      </div>
+
+      <!-- Hero right: GAF badge + stats -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2 bg-dark-700/80 border border-brand-500/20 rounded-2xl p-6 card-hover flex items-center gap-5">
+          <img src="/images/gaf-master-elite.png" alt="GAF Master Elite Residential Roofing Contractor badge" class="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0" />
+          <div>
+            <div class="text-xs uppercase tracking-widest text-brand-400 font-bold mb-1">Certified Contractor</div>
+            <h3 class="font-bold text-lg sm:text-xl mb-1 leading-tight">GAF Master Elite<sup class="text-xs">®</sup></h3>
+            <p class="text-gray-400 text-sm">Less than 2% of roofing contractors in the U.S. earn this certification. It means factory-trained crews and the best warranties in the industry.</p>
+          </div>
+        </div>
+        <div class="bg-dark-700 border border-white/5 rounded-2xl p-5 card-hover text-center">
+          <div class="text-3xl sm:text-4xl font-black text-brand-400 mb-1">24h</div>
+          <div class="text-gray-400 text-xs sm:text-sm">Emergency Response</div>
+        </div>
+        <div class="bg-dark-700 border border-white/5 rounded-2xl p-5 card-hover text-center">
+          <div class="text-3xl sm:text-4xl font-black text-brand-400 mb-1">$0</div>
+          <div class="text-gray-400 text-xs sm:text-sm">Inspection Cost</div>
+        </div>
+        <div class="bg-dark-700 border border-white/5 rounded-2xl p-5 card-hover text-center">
+          <div class="text-3xl sm:text-4xl font-black text-brand-400 mb-1">100%</div>
+          <div class="text-gray-400 text-xs sm:text-sm">Insurance Handled</div>
+        </div>
+        <div class="bg-dark-700 border border-white/5 rounded-2xl p-5 card-hover text-center">
+          <div class="text-3xl sm:text-4xl font-black text-brand-400 mb-1">5★</div>
+          <div class="text-gray-400 text-xs sm:text-sm">Customer Rated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ──────────────────────────────────────────────── -->
+<section id="services" class="py-20 sm:py-24 bg-dark-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">What We Do</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2">Full-Service <span class="gradient-text">Restoration</span></h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <a href="form.html?service=roof" class="group bg-dark-700 hover:bg-dark-600 border border-white/5 hover:border-brand-500/30 rounded-2xl p-6 transition-all card-hover">
+        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-2xl mb-4">🏠</div>
+        <h3 class="font-bold text-lg mb-2">Roof Restoration</h3>
+        <p class="text-gray-400 text-sm mb-4">Inspection, repair, full replacement. GAF-certified shingle systems with manufacturer warranties.</p>
+        <span class="text-brand-400 text-sm font-medium">Get Quote →</span>
+      </a>
+      <a href="form.html?service=siding" class="group bg-dark-700 hover:bg-dark-600 border border-white/5 hover:border-brand-500/30 rounded-2xl p-6 transition-all card-hover">
+        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-2xl mb-4">🏗️</div>
+        <h3 class="font-bold text-lg mb-2">Siding Repair</h3>
+        <p class="text-gray-400 text-sm mb-4">Hail and wind damage to siding requires fast action. We match materials precisely.</p>
+        <span class="text-brand-400 text-sm font-medium">Get Quote →</span>
+      </a>
+      <a href="form.html?service=interior" class="group bg-dark-700 hover:bg-dark-600 border border-white/5 hover:border-brand-500/30 rounded-2xl p-6 transition-all card-hover">
+        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-2xl mb-4">🛋️</div>
+        <h3 class="font-bold text-lg mb-2">Interior Damage</h3>
+        <p class="text-gray-400 text-sm mb-4">Water intrusion, ceiling damage, mold remediation. We restore to pre-storm condition.</p>
+        <span class="text-brand-400 text-sm font-medium">Get Quote →</span>
+      </a>
+      <a href="form.html?service=other" class="group bg-dark-700 hover:bg-dark-600 border border-white/5 hover:border-brand-500/30 rounded-2xl p-6 transition-all card-hover">
+        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-2xl mb-4">🌪️</div>
+        <h3 class="font-bold text-lg mb-2">Other Storm Damage</h3>
+        <p class="text-gray-400 text-sm mb-4">Gutters, windows, decks, fencing, HVAC — if the storm damaged it, we restore it.</p>
+        <span class="text-brand-400 text-sm font-medium">Get Quote →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Before / After Gallery ────────────────────────────────── -->
+<section id="gallery" class="py-20 sm:py-24 bg-dark-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Proof of Work</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2">Before & <span class="gradient-text">After</span></h2>
+      <p class="text-gray-400 mt-3 max-w-2xl mx-auto">Recent storm-damage restorations across South Jersey. Every project documented, photographed, and warranted.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- 8 cards -->
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/hail-damage-before.svg" alt="Roof with hail damage before restoration" loading="lazy" />
+          <img data-src="/images/before-after/hail-damage-after.svg"  alt="Roof after hail damage restoration" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Hail Damage <span class="text-gray-500 font-normal">— Haddon Twp.</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/wind-damage-before.svg" alt="Wind damage before" loading="lazy" />
+          <img data-src="/images/before-after/wind-damage-after.svg"  alt="Wind damage after restoration" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Wind Damage <span class="text-gray-500 font-normal">— Westmont</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/water-damage-before.svg" alt="Water damage before" loading="lazy" />
+          <img data-src="/images/before-after/water-damage-after.svg"  alt="Water damage after restoration" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Water Damage <span class="text-gray-500 font-normal">— Cherry Hill</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/roof-replace-before.svg" alt="Roof replacement before" loading="lazy" />
+          <img data-src="/images/before-after/roof-replace-after.svg"  alt="Roof replacement after" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Full Roof Replacement <span class="text-gray-500 font-normal">— Haddonfield</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/siding-repair-before.svg" alt="Siding repair before" loading="lazy" />
+          <img data-src="/images/before-after/siding-repair-after.svg"  alt="Siding repair after" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Siding Repair <span class="text-gray-500 font-normal">— Audubon</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/gutter-repair-before.svg" alt="Gutter restoration before" loading="lazy" />
+          <img data-src="/images/before-after/gutter-repair-after.svg"  alt="Gutter restoration after" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Gutter Restoration <span class="text-gray-500 font-normal">— Collingswood</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/interior-resto-before.svg" alt="Interior restoration before" loading="lazy" />
+          <img data-src="/images/before-after/interior-resto-after.svg"  alt="Interior restoration after" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Interior Restoration <span class="text-gray-500 font-normal">— Haddon Heights</span></figcaption>
+      </figure>
+      <figure class="ba-card bg-dark-700 border border-white/5 card-hover">
+        <div class="pair">
+          <img data-src="/images/before-after/storm-cleanup-before.svg" alt="Storm cleanup before" loading="lazy" />
+          <img data-src="/images/before-after/storm-cleanup-after.svg"  alt="Storm cleanup after" loading="lazy" />
+        </div>
+        <figcaption class="px-4 py-3 text-sm font-semibold">Storm Cleanup <span class="text-gray-500 font-normal">— Bellmawr</span></figcaption>
+      </figure>
+    </div>
+    <p class="text-xs text-gray-500 text-center mt-6">Sample project illustrations — actual photos are sent on request after inspection.</p>
+  </div>
+</section>
+
+<!-- ── Service Area ──────────────────────────────────────────── -->
+<section id="service-area" class="py-20 sm:py-24 bg-dark-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Where We Work</span>
+        <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-4">South Jersey <span class="gradient-text">Service Area</span></h2>
+        <p class="text-gray-400 mb-6">Headquartered in Westville, NJ. We respond fast across a <strong class="text-white">15–20 mile radius</strong>, including Haddon Township, Westmont, Haddonfield, Cherry Hill, and surrounding neighborhoods.</p>
+        <div id="neighborhoodList" class="grid grid-cols-2 gap-2 mb-6"></div>
+        <div class="bg-dark-700 border border-white/5 rounded-xl p-5">
+          <div class="text-sm text-gray-400 mb-1">Headquarters</div>
+          <div class="font-bold">United Group Inc.</div>
+          <a href="https://maps.google.com/?q=1000+Delsea+Dr+Ste+I-4+Westville+NJ+08093" target="_blank" rel="noopener" class="text-sm text-gray-300 hover:text-brand-400 transition-colors block">1000 Delsea Dr, Ste I-4<br/>Westville, NJ 08093</a>
+          <a href="tel:8562548367" class="text-sm text-brand-400 font-semibold mt-2 inline-block">📞 856-254-8367</a>
+        </div>
+      </div>
+      <div>
+        <div id="serviceAreaMap" aria-label="Map of United Group Inc. service area centered on Westville, NJ"></div>
+        <p class="text-xs text-gray-500 mt-3">Don't see your town? Call us — we frequently take projects throughout South Jersey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ──────────────────────────────────────────── -->
+<section id="testimonials" class="py-20 sm:py-24 bg-dark-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">What Customers Say</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2">Five-Star <span class="gradient-text">Service</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <article class="bg-dark-700 border border-white/5 rounded-2xl p-6 card-hover">
+        <div class="star text-lg mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="text-gray-200 mb-4">"After the storm we had shingles all over the yard. United Group came out the next morning, documented everything, and handled the insurance claim. Roof was replaced inside two weeks."</p>
+        <div class="text-sm">
+          <div class="font-semibold">Sarah M.</div>
+          <div class="text-gray-500">Haddon Township · Roof Replacement</div>
+        </div>
+      </article>
+      <article class="bg-dark-700 border border-white/5 rounded-2xl p-6 card-hover">
+        <div class="star text-lg mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="text-gray-200 mb-4">"Fast response, professional crew, great quality. They explained the GAF system, the warranty, the schedule — every step. House looks better than before the storm."</p>
+        <div class="text-sm">
+          <div class="font-semibold">Mike R.</div>
+          <div class="text-gray-500">Westmont · Roof + Gutters</div>
+        </div>
+      </article>
+      <article class="bg-dark-700 border border-white/5 rounded-2xl p-6 card-hover">
+        <div class="star text-lg mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="text-gray-200 mb-4">"I had hail damage I couldn't even see from the ground. Their inspector showed me, took photos, and worked directly with my adjuster. Zero out-of-pocket beyond my deductible."</p>
+        <div class="text-sm">
+          <div class="font-semibold">Jennifer K.</div>
+          <div class="text-gray-500">Haddonfield · Hail Damage Restoration</div>
+        </div>
+      </article>
+      <article class="bg-dark-700 border border-white/5 rounded-2xl p-6 card-hover">
+        <div class="star text-lg mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="text-gray-200 mb-4">"Water was getting into the upstairs ceiling. They tarped the roof same-day, dried out the interior, and rebuilt the drywall. Crew was respectful and on-time every visit."</p>
+        <div class="text-sm">
+          <div class="font-semibold">David L.</div>
+          <div class="text-gray-500">Cherry Hill · Water Damage Restoration</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Certifications & Trust ───────────────────────────────── -->
+<section id="trust" class="py-20 sm:py-24 bg-dark-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="bg-dark-700 border border-white/5 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
+        <img src="/images/gaf-master-elite.png" alt="GAF Master Elite badge" class="w-32 h-32 flex-shrink-0" />
+        <div>
+          <div class="text-xs uppercase tracking-widest text-brand-400 font-bold mb-1">Certifications</div>
+          <h3 class="text-2xl font-black mb-2">GAF Master Elite<sup class="text-xs">®</sup> Contractor</h3>
+          <p class="text-gray-400 text-sm">Less than 2% of U.S. roofing contractors hold the GAF Master Elite certification. It requires factory training, proper licensing, insurance, and proven workmanship — and it unlocks GAF's strongest residential roofing warranties.</p>
+          <ul class="mt-4 space-y-1.5 text-sm text-gray-300">
+            <li>✓ Licensed in NJ</li>
+            <li>✓ General liability + workers' comp insurance</li>
+            <li>✓ Certified GAF installation crews</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Why United Group</span>
+        <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-6">We Don't Just Restore Homes.<br /><span class="gradient-text">We Restore Peace of Mind.</span></h2>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-brand-500/10 rounded-lg flex items-center justify-center text-brand-400 flex-shrink-0 mt-0.5">✓</div>
+            <div><strong class="font-semibold">Insurance Claim Specialists</strong> — We've worked with every major carrier. We document for adjusters and fight for full scope.</div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-brand-500/10 rounded-lg flex items-center justify-center text-brand-400 flex-shrink-0 mt-0.5">✓</div>
+            <div><strong class="font-semibold">No Up-Front Costs</strong> — Free inspection. We start work when your claim is approved.</div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-brand-500/10 rounded-lg flex items-center justify-center text-brand-400 flex-shrink-0 mt-0.5">✓</div>
+            <div><strong class="font-semibold">Workmanship Warranty</strong> — We stand behind everything we install. If something isn't right, we make it right.</div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-brand-500/10 rounded-lg flex items-center justify-center text-brand-400 flex-shrink-0 mt-0.5">✓</div>
+            <div><strong class="font-semibold">Local Crews</strong> — Westville-based, serving South Jersey. Not a national franchise.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact / Booking CTA ─────────────────────────────────── -->
+<section id="contact" class="py-20 sm:py-24 bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">Don't Wait for the Next Rain.</h2>
+        <p class="text-orange-100 text-lg mb-6">Get a free, no-obligation inspection scheduled today. We'll document everything and walk you through next steps.</p>
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <a href="form.html" class="bg-white text-brand-700 hover:bg-orange-50 font-bold px-7 py-4 rounded-xl text-base sm:text-lg text-center shadow-xl">Get Free Quote</a>
+          <a href="booking.html" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-7 py-4 rounded-xl text-base sm:text-lg text-center">📅 Pick a Date</a>
+        </div>
+        <a href="tel:8562548367" class="inline-flex items-center gap-2 text-white font-bold text-xl hover:underline">📞 856-254-8367</a>
+      </div>
+      <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-white">
+        <h3 class="font-bold text-lg mb-4">Visit or Call</h3>
+        <dl class="space-y-3 text-sm">
+          <div>
+            <dt class="text-orange-100/80 font-semibold">Address</dt>
+            <dd>1000 Delsea Dr, Ste I-4<br/>Westville, NJ 08093</dd>
+          </div>
+          <div>
+            <dt class="text-orange-100/80 font-semibold">Phone</dt>
+            <dd><a href="tel:8562548367" class="hover:underline">856-254-8367</a></dd>
+          </div>
+          <div>
+            <dt class="text-orange-100/80 font-semibold">Hours</dt>
+            <dd>Mon–Sat 7:00 AM – 7:00 PM<br/>24/7 emergency response</dd>
+          </div>
+          <div>
+            <dt class="text-orange-100/80 font-semibold">Service Area</dt>
+            <dd>South Jersey (15–20 mi radius from Westville)</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────── -->
+<footer class="bg-dark-900 border-t border-white/5 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <img src="/images/logo-united-group.svg" alt="United Group Inc." class="h-10 w-auto mb-4" />
+        <p class="text-gray-400 text-sm max-w-md mb-4">Professional storm damage restoration and roofing in South Jersey. We handle inspection, insurance, and installation — you get peace of mind.</p>
+        <div class="flex items-center gap-4">
+          <img src="/images/gaf-master-elite.png" alt="GAF Master Elite Certified Contractor" class="w-20 h-20" />
+          <div class="text-xs text-gray-400">
+            <div class="font-bold text-white">GAF Master Elite<sup>®</sup></div>
+            <div>Certified Residential</div>
+            <div>Roofing Contractor</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-white">Contact</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="tel:8562548367" class="hover:text-white transition-colors">📞 856-254-8367</a></li>
+          <li class="leading-relaxed">📍 1000 Delsea Dr, Ste I-4<br/>Westville, NJ 08093</li>
+          <li>🕒 Mon–Sat 7a–7p</li>
+          <li class="text-emerald-400">⚡ 24/7 Emergency Response</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="form.html" class="hover:text-white transition-colors">Get Free Quote</a></li>
+          <li><a href="booking.html" class="hover:text-white transition-colors">Book Inspection</a></li>
+          <li><a href="photos.html" class="hover:text-white transition-colors">Upload Damage Photos</a></li>
+          <li><a href="chat.html" class="hover:text-white transition-colors">Chat Support</a></li>
+          <li><a href="#service-area" class="hover:text-white transition-colors">Service Area</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-divider mb-6"></div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-500">
+      <span>© <span id="year"></span> United Group Inc. · Westville, NJ · All rights reserved.</span>
+      <span>Licensed · Bonded · Insured · GAF Master Elite<sup>®</sup></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Floating Chat Widget (preserved) ─────────────────────── -->
+<div id="chatBubble" onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 bg-brand-500 hover:bg-brand-600 rounded-full flex items-center justify-center cursor-pointer shadow-lg shadow-brand-500/30 z-50 transition-all hover:scale-110">
+  <svg id="chatIcon" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h7l4 4 4-4h3a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg>
+  <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center font-bold">1</span>
+</div>
+<div id="chatWindow" class="hidden fixed bottom-24 right-6 w-80 max-w-[calc(100vw-2rem)] bg-dark-800 border border-white/10 rounded-2xl shadow-2xl z-50 chat-widget overflow-hidden">
+  <div class="bg-dark-700 border-b border-white/5 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2"><div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div><span class="font-semibold text-sm">United Group Support</span></div>
+    <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors" aria-label="Close chat">✕</button>
+  </div>
+  <div id="chatMessages" class="h-64 overflow-y-auto p-4 space-y-3">
+    <div class="flex gap-2">
+      <div class="w-7 h-7 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">UG</div>
+      <div class="bg-dark-600 rounded-xl rounded-tl-none px-3 py-2 text-sm text-gray-200 max-w-[85%]">Hi! 👋 Have storm damage questions? I can help — or call us directly at <a href="tel:8562548367" class="text-brand-300 underline">856-254-8367</a>.</div>
+    </div>
+  </div>
+  <div class="border-t border-white/5 p-3 flex gap-2">
+    <input id="chatInput" type="text" placeholder="Ask anything..." class="flex-1 bg-dark-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500" onkeypress="if(event.key==='Enter') sendChat()" />
+    <button onclick="sendChat()" class="bg-brand-500 hover:bg-brand-600 text-white px-3 py-2 rounded-lg transition-colors" aria-label="Send message">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="/js/maps.js" defer></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  let chatOpen = false;
+  let chatSessionId = localStorage.getItem('ugr_chat_session') || null;
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    const w = document.getElementById('chatWindow');
+    const badge = document.querySelector('#chatBubble span');
+    if (chatOpen) { w.classList.remove('hidden'); if (badge) badge.remove(); }
+    else w.classList.add('hidden');
+  }
+  async function sendChat() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    appendMessage('user', msg);
+    appendMessage('typing', '...');
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ message: msg, sessionId: chatSessionId })
+      });
+      const data = await res.json();
+      chatSessionId = data.sessionId;
+      localStorage.setItem('ugr_chat_session', chatSessionId);
+      removeTyping();
+      appendMessage('assistant', data.reply);
+    } catch (e) {
+      removeTyping();
+      appendMessage('assistant', "Sorry, having trouble connecting. Call us at 856-254-8367 or use the Get Free Quote form.");
+    }
+  }
+  function appendMessage(role, content) {
+    const msgs = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    if (role === 'typing') {
+      div.id = 'typingIndicator';
+      div.className = 'flex gap-2';
+      div.innerHTML = `<div class="w-7 h-7 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">UG</div><div class="bg-dark-600 rounded-xl rounded-tl-none px-3 py-2 text-sm text-gray-400 italic">${content}</div>`;
+    } else if (role === 'user') {
+      div.className = 'flex justify-end';
+      div.innerHTML = `<div class="bg-brand-500/20 border border-brand-500/20 rounded-xl rounded-tr-none px-3 py-2 text-sm text-white max-w-[85%]">${escapeHtml(content)}</div>`;
+    } else {
+      div.className = 'flex gap-2';
+      div.innerHTML = `<div class="w-7 h-7 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">UG</div><div class="bg-dark-600 rounded-xl rounded-tl-none px-3 py-2 text-sm text-gray-200 max-w-[85%]">${escapeHtml(content)}</div>`;
+    }
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function removeTyping() { const t = document.getElementById('typingIndicator'); if (t) t.remove(); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+</script>
+
+<!-- LocalBusiness schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "name": "United Group Inc.",
+  "image": "/images/logo-united-group.svg",
+  "telephone": "+1-856-254-8367",
+  "email": "info@unitedgroupinc.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1000 Delsea Dr Ste I-4",
+    "addressLocality": "Westville",
+    "addressRegion": "NJ",
+    "postalCode": "08093",
+    "addressCountry": "US"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 39.864, "longitude": -75.131 },
+  "areaServed": ["Westville NJ", "Haddon Township", "Haddonfield", "Westmont", "Cherry Hill", "Audubon", "Collingswood", "Bellmawr", "Mount Ephraim"],
+  "openingHours": "Mo-Sa 07:00-19:00",
+  "hasCredential": "GAF Master Elite Residential Roofing Contractor"
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="/animations.js"></script>
+</body>
+</html>
+

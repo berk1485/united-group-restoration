@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#sky)"/>
+  <rect x="140" y="200" width="320" height="160" fill="#f8fafc"/>
+  <polygon points="120,200 480,200 300,90" fill="#7c2d12" />
+  
+  <rect x="280" y="270" width="40" height="90" fill="#7c2d12"/>
+  <rect x="180" y="240" width="50" height="50" fill="#bae6fd"/>
+  <rect x="370" y="240" width="50" height="50" fill="#bae6fd"/>
+  <rect x="0" y="360" width="600" height="40" fill="#166534"/>
+  <rect x="20" y="20" width="110" height="38" rx="8" fill="#22c55e"/>
+  <text x="75" y="46" font-family="Inter, Arial" font-size="20" font-weight="900" fill="#fff" text-anchor="middle">AFTER</text>
+  <rect x="0" y="360" width="600" height="40" fill="rgba(0,0,0,0.55)"/>
+  <text x="300" y="388" font-family="Inter, Arial" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">Hail Damage</text>
+</svg>

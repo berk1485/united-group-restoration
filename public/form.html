@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Free Inspection Quote | United Group Restoration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' }, dark: { 900:'#0a0a0f', 800:'#111118', 700:'#1a1a2e', 600:'#16213e' } } } }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .input-style { @apply w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all; }
+    input:invalid:not(:placeholder-shown) { border-color: rgb(239 68 68 / 0.5); }
+  </style>
+</head>
+<body class="bg-dark-900 text-white min-h-screen">
+
+<!-- Nav -->
+<nav class="border-b border-white/5 bg-dark-800/80 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-black text-sm">UG</div>
+      <span class="font-bold">United Group <span class="text-brand-400">Restoration</span></span>
+    </a>
+    <a href="index.html" class="text-gray-400 hover:text-white text-sm transition-colors">← Back to Home</a>
+  </div>
+</nav>
+
+<div class="max-w-3xl mx-auto px-4 py-16">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-4 py-2 text-brand-400 text-sm font-medium mb-6">
+      <span class="w-2 h-2 bg-brand-400 rounded-full"></span>
+      Free — No Obligation
+    </div>
+    <h1 class="text-4xl font-black mb-3">Get Your Free <span class="gradient-text">Inspection Quote</span></h1>
+    <p class="text-gray-400 text-lg">Fill out the form below and we'll reach out within 24 hours to schedule your inspection.</p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="bg-dark-800 border border-white/5 rounded-2xl p-8">
+    <form id="leadForm" class="space-y-6">
+
+      <!-- Section: Contact Info -->
+      <div>
+        <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-brand-500 rounded-full text-xs flex items-center justify-center">1</span>
+          Your Contact Info
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Full Name <span class="text-red-400">*</span></label>
+            <input type="text" name="name" placeholder="John Smith" required class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number <span class="text-red-400">*</span></label>
+            <input type="tel" name="phone" placeholder="(555) 123-4567" required class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-2">Email Address <span class="text-red-400">*</span></label>
+            <input type="email" name="email" placeholder="john@example.com" required class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all" />
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5"></div>
+
+      <!-- Section: Property Info -->
+      <div>
+        <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-brand-500 rounded-full text-xs flex items-center justify-center">2</span>
+          Property & Damage Info
+        </h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Property Address <span class="text-red-400">*</span></label>
+            <input type="text" name="address" placeholder="123 Main St, City, State 12345" required class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Type of Damage <span class="text-red-400">*</span></label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="service-option cursor-pointer">
+                <input type="radio" name="service_type" value="roof" class="hidden" />
+                <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all selected:border-brand-500">
+                  <div class="text-2xl mb-1">🏠</div>
+                  <div class="text-sm font-medium">Roof</div>
+                </div>
+              </label>
+              <label class="service-option cursor-pointer">
+                <input type="radio" name="service_type" value="siding" class="hidden" />
+                <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all">
+                  <div class="text-2xl mb-1">🏗️</div>
+                  <div class="text-sm font-medium">Siding</div>
+                </div>
+              </label>
+              <label class="service-option cursor-pointer">
+                <input type="radio" name="service_type" value="interior" class="hidden" />
+                <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all">
+                  <div class="text-2xl mb-1">🛋️</div>
+                  <div class="text-sm font-medium">Interior</div>
+                </div>
+              </label>
+              <label class="service-option cursor-pointer">
+                <input type="radio" name="service_type" value="other" class="hidden" />
+                <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all">
+                  <div class="text-2xl mb-1">🌪️</div>
+                  <div class="text-sm font-medium">Other</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Describe the Damage</label>
+            <textarea name="damage_description" rows="4" placeholder="Tell us what happened. When did it occur? What areas are affected? Any active leaks?" class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5"></div>
+
+      <!-- Section: Contact Preference -->
+      <div>
+        <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-brand-500 rounded-full text-xs flex items-center justify-center">3</span>
+          How Should We Reach You?
+        </h2>
+        <div class="grid grid-cols-3 gap-3">
+          <label class="cursor-pointer">
+            <input type="radio" name="contact_method" value="phone" class="hidden" />
+            <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all contact-opt">
+              <div class="text-xl mb-1">📞</div>
+              <div class="text-sm">Phone Call</div>
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input type="radio" name="contact_method" value="text" class="hidden" />
+            <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all contact-opt">
+              <div class="text-xl mb-1">💬</div>
+              <div class="text-sm">Text / SMS</div>
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input type="radio" name="contact_method" value="email" class="hidden contact-opt" />
+            <div class="border border-white/10 rounded-xl p-3 text-center hover:border-brand-500/50 transition-all contact-opt">
+              <div class="text-xl mb-1">📧</div>
+              <div class="text-sm">Email</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" id="submitBtn" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl text-lg transition-all hover:scale-[1.02] shadow-lg shadow-brand-500/25">
+        Submit Free Inspection Request →
+      </button>
+
+      <p class="text-center text-gray-500 text-sm">
+        🔒 Your information is secure and never sold. We'll only contact you about your restoration inquiry.
+      </p>
+    </form>
+
+    <!-- Success State -->
+    <div id="successState" class="hidden text-center py-8">
+      <div class="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✅</div>
+      <h2 class="text-2xl font-black mb-3">Request Submitted!</h2>
+      <p class="text-gray-400 mb-2">We've received your inspection request. Our team will contact you within <strong class="text-white">24 hours</strong> to schedule.</p>
+      <p id="refNumber" class="text-brand-400 font-mono text-sm mb-6"></p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="photos.html" id="photoLink" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-xl transition-all">
+          📸 Upload Damage Photos
+        </a>
+        <a href="booking.html" class="bg-dark-700 hover:bg-dark-600 border border-white/10 text-white font-semibold px-6 py-3 rounded-xl transition-all">
+          📅 Book Inspection Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Pre-select service from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const service = urlParams.get('service');
+  if (service) {
+    const radio = document.querySelector(`input[value="${service}"]`);
+    if (radio) { radio.checked = true; radio.closest('label').querySelector('div').classList.add('border-brand-500', 'bg-brand-500/10'); }
+  }
+
+  // Radio card selection styles
+  document.querySelectorAll('.service-option input[type=radio]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.service-option div').forEach(d => d.classList.remove('border-brand-500', 'bg-brand-500/10'));
+      radio.nextElementSibling.classList.add('border-brand-500', 'bg-brand-500/10');
+    });
+  });
+
+  document.querySelectorAll('input[name=contact_method]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.contact-opt').forEach(d => d.classList.remove('border-brand-500', 'bg-brand-500/10'));
+      radio.nextElementSibling.classList.add('border-brand-500', 'bg-brand-500/10');
+    });
+  });
+
+  document.getElementById('leadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+
+      if (res.ok) {
+        document.getElementById('leadForm').classList.add('hidden');
+        document.getElementById('successState').classList.remove('hidden');
+        document.getElementById('refNumber').textContent = `Reference: ${result.leadId?.substring(0, 8).toUpperCase() || 'SUBMITTED'}`;
+        if (result.leadId) {
+          document.getElementById('photoLink').href = `photos.html?leadId=${result.leadId}`;
+        }
+        localStorage.setItem('ugr_lead_id', result.leadId);
+      } else {
+        alert(result.error || 'Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Submit Free Inspection Request →';
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection and try again.');
+      btn.disabled = false;
+      btn.textContent = 'Submit Free Inspection Request →';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Inspection | United Group Restoration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' }, dark: { 900:'#0a0a0f', 800:'#111118', 700:'#1a1a2e', 600:'#16213e' } } } } }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .day-btn { transition: all 0.15s ease; }
+    .day-btn:hover:not(:disabled) { border-color: #f97316; background-color: rgba(249,115,22,0.05); }
+    .day-btn.selected { background: #f97316; border-color: #f97316; color: white; }
+    .day-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .slot-btn { transition: all 0.15s ease; }
+    .slot-btn:hover:not(:disabled) { border-color: #f97316; background: rgba(249,115,22,0.05); }
+    .slot-btn.selected { background: #f97316; border-color: #f97316; color: white; }
+    .slot-btn:disabled { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+  </style>
+</head>
+<body class="bg-dark-900 text-white min-h-screen">
+
+<nav class="border-b border-white/5 bg-dark-800/80 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-black text-sm">UG</div>
+      <span class="font-bold">United Group <span class="text-brand-400">Restoration</span></span>
+    </a>
+    <a href="index.html" class="text-gray-400 hover:text-white text-sm transition-colors">← Back to Home</a>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-4 py-16">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-black mb-3">Book Your <span class="gradient-text">Free Inspection</span></h1>
+    <p class="text-gray-400 text-lg">Select a date and time that works for you. Our inspector will arrive within the 1-hour window.</p>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-8">
+
+    <!-- Left: Calendar + Slots -->
+    <div class="space-y-6">
+
+      <!-- Month navigation -->
+      <div class="bg-dark-800 border border-white/5 rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <button onclick="prevMonth()" class="w-8 h-8 bg-dark-700 hover:bg-dark-600 rounded-lg flex items-center justify-center transition-colors">‹</button>
+          <h2 id="monthLabel" class="font-bold text-lg"></h2>
+          <button onclick="nextMonth()" class="w-8 h-8 bg-dark-700 hover:bg-dark-600 rounded-lg flex items-center justify-center transition-colors">›</button>
+        </div>
+
+        <!-- Weekday headers -->
+        <div class="grid grid-cols-7 mb-2">
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Su</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Mo</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Tu</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">We</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Th</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Fr</div>
+          <div class="text-center text-xs font-medium text-gray-500 py-1">Sa</div>
+        </div>
+
+        <div id="calendarGrid" class="grid grid-cols-7 gap-1"></div>
+      </div>
+
+      <!-- Time Slots -->
+      <div class="bg-dark-800 border border-white/5 rounded-2xl p-6">
+        <h3 class="font-semibold mb-4" id="slotsLabel">Select a date to see available times</h3>
+        <div id="slotsGrid" class="grid grid-cols-2 gap-2">
+          <div class="col-span-2 text-center text-gray-500 py-4 text-sm">← Choose a date first</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Booking Form -->
+    <div class="bg-dark-800 border border-white/5 rounded-2xl p-6">
+      <h2 class="font-bold text-lg mb-6">Your Details</h2>
+
+      <!-- Selected summary -->
+      <div id="selectionSummary" class="hidden bg-brand-500/10 border border-brand-500/20 rounded-xl p-4 mb-6">
+        <div class="text-sm text-brand-400 font-medium mb-1">Selected Appointment</div>
+        <div id="summaryDate" class="font-bold"></div>
+        <div id="summaryTime" class="text-gray-300 text-sm"></div>
+      </div>
+
+      <form id="bookingForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Full Name <span class="text-red-400">*</span></label>
+          <input type="text" name="name" required placeholder="John Smith" class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Email <span class="text-red-400">*</span></label>
+          <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Phone <span class="text-red-400">*</span></label>
+          <input type="tel" name="phone" required placeholder="(555) 123-4567" class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Property Address</label>
+          <input type="text" name="address" placeholder="123 Main St, City, State" class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Notes (optional)</label>
+          <textarea name="notes" rows="2" placeholder="Gate code, parking instructions, areas of concern..." class="w-full bg-dark-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all resize-none"></textarea>
+        </div>
+
+        <button type="submit" id="bookBtn" disabled class="w-full bg-dark-600 text-gray-400 font-bold py-4 rounded-xl text-lg transition-all cursor-not-allowed" >
+          Select Date & Time First
+        </button>
+      </form>
+
+      <!-- Success -->
+      <div id="bookingSuccess" class="hidden text-center py-6">
+        <div class="text-5xl mb-4">🎉</div>
+        <h3 class="text-xl font-black mb-2">Inspection Booked!</h3>
+        <p class="text-gray-400 mb-1">Confirmation sent to your email.</p>
+        <div id="confirmationDetails" class="bg-brand-500/10 border border-brand-500/20 rounded-xl p-4 my-4 text-sm"></div>
+        <a href="index.html" class="text-brand-400 hover:text-brand-300 text-sm transition-colors">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedDate = null;
+  let selectedSlot = null;
+  let currentYear, currentMonth;
+  const today = new Date();
+
+  currentYear = today.getFullYear();
+  currentMonth = today.getMonth();
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function renderCalendar() {
+    document.getElementById('monthLabel').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    const grid = document.getElementById('calendarGrid');
+    grid.innerHTML = '';
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const minDate = new Date(today); minDate.setDate(today.getDate() + 1);
+    const maxDate = new Date(today); maxDate.setDate(today.getDate() + 30);
+
+    // Empty cells for start
+    for (let i = 0; i < firstDay; i++) {
+      grid.appendChild(Object.assign(document.createElement('div'), { className: 'h-9' }));
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(currentYear, currentMonth, d);
+      const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isPast = date < minDate;
+      const isFuture = date > maxDate;
+      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+      const isDisabled = isPast || isFuture || isWeekend;
+      const isSelected = dateStr === selectedDate;
+
+      const btn = document.createElement('button');
+      btn.className = `day-btn h-9 w-full rounded-lg text-sm font-medium border ${isDisabled ? 'opacity-20 cursor-not-allowed border-transparent' : 'border-white/10 hover:border-brand-500'} ${isSelected ? 'selected' : ''}`;
+      btn.textContent = d;
+      btn.disabled = isDisabled;
+      if (!isDisabled) btn.onclick = () => selectDate(dateStr, date);
+      grid.appendChild(btn);
+    }
+  }
+
+  async function selectDate(dateStr, dateObj) {
+    selectedDate = dateStr;
+    selectedSlot = null;
+    renderCalendar();
+
+    const label = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    document.getElementById('slotsLabel').textContent = `Available Times — ${label}`;
+
+    const grid = document.getElementById('slotsGrid');
+    grid.innerHTML = '<div class="col-span-2 text-center text-gray-400 py-4 text-sm">Loading...</div>';
+
+    try {
+      const res = await fetch(`/api/bookings/availability?date=${dateStr}`);
+      const data = await res.json();
+      renderSlots(data.slots);
+    } catch (e) {
+      renderSlots(['8:00 AM','9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM']);
+    }
+  }
+
+  function renderSlots(available) {
+    const allSlots = ['8:00 AM','9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
+    const grid = document.getElementById('slotsGrid');
+    grid.innerHTML = '';
+    allSlots.forEach(slot => {
+      const isAvailable = available.includes(slot);
+      const isSelected = slot === selectedSlot;
+      const btn = document.createElement('button');
+      btn.className = `slot-btn border rounded-lg py-2.5 text-sm font-medium ${!isAvailable ? 'opacity-30 cursor-not-allowed border-white/10 text-gray-500' : 'border-white/10 ' + (isSelected ? 'selected' : '')}`;
+      btn.textContent = isAvailable ? slot : `${slot} (booked)`;
+      btn.disabled = !isAvailable;
+      if (isAvailable) btn.onclick = () => selectSlot(slot);
+      grid.appendChild(btn);
+    });
+  }
+
+  function selectSlot(slot) {
+    selectedSlot = slot;
+    document.querySelectorAll('.slot-btn').forEach(b => {
+      if (b.textContent === slot) b.classList.add('selected');
+      else b.classList.remove('selected');
+    });
+    updateSummary();
+  }
+
+  function updateSummary() {
+    if (!selectedDate || !selectedSlot) return;
+    const dateObj = new Date(selectedDate + 'T12:00:00');
+    const dateLabel = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    document.getElementById('selectionSummary').classList.remove('hidden');
+    document.getElementById('summaryDate').textContent = dateLabel;
+    document.getElementById('summaryTime').textContent = selectedSlot;
+
+    const btn = document.getElementById('bookBtn');
+    btn.disabled = false;
+    btn.className = 'w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl text-lg transition-all hover:scale-[1.02] cursor-pointer';
+    btn.textContent = 'Confirm Inspection Booking →';
+  }
+
+  function prevMonth() {
+    if (currentMonth === 0) { currentMonth = 11; currentYear--; } else currentMonth--;
+    renderCalendar();
+  }
+
+  function nextMonth() {
+    if (currentMonth === 11) { currentMonth = 0; currentYear++; } else currentMonth++;
+    renderCalendar();
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!selectedDate || !selectedSlot) { alert('Please select a date and time first.'); return; }
+
+    const btn = document.getElementById('bookBtn');
+    btn.disabled = true;
+    btn.textContent = 'Booking...';
+
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    data.date = selectedDate;
+    data.time_slot = selectedSlot;
+    data.lead_id = localStorage.getItem('ugr_lead_id') || null;
+
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      if (res.ok) {
+        document.getElementById('bookingForm').classList.add('hidden');
+        document.getElementById('selectionSummary').classList.add('hidden');
+        document.getElementById('bookingSuccess').classList.remove('hidden');
+        const dateObj = new Date(selectedDate + 'T12:00:00');
+        const dateLabel = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        document.getElementById('confirmationDetails').innerHTML = `
+          <p><strong>📅 Date:</strong> ${dateLabel}</p>
+          <p><strong>🕐 Time:</strong> ${selectedSlot}</p>
+          <p class="mt-2 text-gray-400">Ref: ${result.bookingId?.substring(0,8).toUpperCase() || 'CONFIRMED'}</p>
+        `;
+      } else {
+        alert(result.error || 'Booking failed. Please try another time slot.');
+        btn.disabled = false;
+        btn.textContent = 'Confirm Inspection Booking →';
+      }
+    } catch (err) {
+      alert('Network error. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Confirm Inspection Booking →';
+    }
+  });
+
+  renderCalendar();
+</script>
+</body>
+</html>

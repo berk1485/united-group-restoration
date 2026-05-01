@@ -1,0 +1,28 @@
+{
+  "name": "united-group-restoration",
+  "version": "1.0.0",
+  "description": "United Group Restoration - Professional Storm Damage Restoration Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "gen-cert": "node scripts/gen-cert.js",
+    "start:https": "cross-env USE_HTTPS=true node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "@seald-io/nedb": "^3.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

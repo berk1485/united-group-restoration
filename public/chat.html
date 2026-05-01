@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Support | United Group Restoration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' }, dark: { 900:'#0a0a0f', 800:'#111118', 700:'#1a1a2e', 600:'#16213e' } } } } }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    #messages { scroll-behavior: smooth; }
+    .typing-dot { animation: typing 1.2s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body class="bg-dark-900 text-white h-screen flex flex-col">
+
+<nav class="border-b border-white/5 bg-dark-800/80 backdrop-blur-xl flex-shrink-0">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-black text-sm">UG</div>
+      <span class="font-bold">United Group <span class="text-brand-400">Support</span></span>
+    </a>
+    <div class="flex items-center gap-2 text-sm text-green-400">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      Online
+    </div>
+  </div>
+</nav>
+
+<div class="flex-1 flex flex-col max-w-3xl mx-auto w-full px-4 py-6 overflow-hidden">
+
+  <!-- Chat header -->
+  <div class="bg-dark-800 border border-white/5 rounded-2xl p-4 mb-4 flex items-center gap-4">
+    <div class="w-12 h-12 bg-brand-500 rounded-xl flex items-center justify-center font-black text-lg">UG</div>
+    <div>
+      <h2 class="font-bold">UGR Support Assistant</h2>
+      <p class="text-sm text-gray-400">Ask about storm damage, our process, insurance, and more</p>
+    </div>
+    <button onclick="clearChat()" class="ml-auto text-sm text-gray-500 hover:text-gray-300 transition-colors">Clear chat</button>
+  </div>
+
+  <!-- Suggested questions -->
+  <div id="suggestions" class="flex flex-wrap gap-2 mb-4">
+    <button onclick="askQuestion('What types of storm damage do you handle?')" class="bg-dark-700 hover:bg-dark-600 border border-white/10 hover:border-brand-500/30 text-sm px-3 py-2 rounded-lg transition-all">What damage do you handle?</button>
+    <button onclick="askQuestion('How does the insurance claim process work?')" class="bg-dark-700 hover:bg-dark-600 border border-white/10 hover:border-brand-500/30 text-sm px-3 py-2 rounded-lg transition-all">Insurance claims?</button>
+    <button onclick="askQuestion('How long does a roof replacement take?')" class="bg-dark-700 hover:bg-dark-600 border border-white/10 hover:border-brand-500/30 text-sm px-3 py-2 rounded-lg transition-all">How long does it take?</button>
+    <button onclick="askQuestion('Is the inspection really free?')" class="bg-dark-700 hover:bg-dark-600 border border-white/10 hover:border-brand-500/30 text-sm px-3 py-2 rounded-lg transition-all">Is inspection really free?</button>
+    <button onclick="askQuestion('What should I do immediately after storm damage?')" class="bg-dark-700 hover:bg-dark-600 border border-white/10 hover:border-brand-500/30 text-sm px-3 py-2 rounded-lg transition-all">What to do right now?</button>
+  </div>
+
+  <!-- Messages -->
+  <div id="messages" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
+    <div class="flex gap-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-1">UG</div>
+      <div class="bg-dark-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%]">
+        <p class="text-gray-100">Hi! 👋 I'm here to help with questions about storm damage and our restoration process. What can I help you with today?</p>
+        <p class="text-xs text-gray-500 mt-2">AI Support • Available 24/7</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="bg-dark-800 border border-white/10 rounded-2xl p-3 flex gap-3 items-end">
+    <textarea id="chatInput" placeholder="Ask anything about storm damage, our services, or the restoration process..." class="flex-1 bg-transparent text-white placeholder-gray-500 resize-none focus:outline-none text-sm max-h-32 min-h-[44px]" rows="1" onkeypress="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button onclick="sendMessage()" class="bg-brand-500 hover:bg-brand-600 text-white w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </button>
+  </div>
+
+  <p class="text-center text-xs text-gray-600 mt-3">Powered by Claude AI • For emergencies call us directly</p>
+</div>
+
+<script>
+  let sessionId = localStorage.getItem('ugr_chat_session') || null;
+  let isLoading = false;
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 128) + 'px';
+  }
+
+  function askQuestion(q) {
+    document.getElementById('chatInput').value = q;
+    document.getElementById('suggestions').style.display = 'none';
+    sendMessage();
+  }
+
+  async function sendMessage() {
+    if (isLoading) return;
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('suggestions').style.display = 'none';
+
+    appendMessage('user', msg);
+    showTyping();
+    isLoading = true;
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg, sessionId })
+      });
+      const data = await res.json();
+      sessionId = data.sessionId;
+      localStorage.setItem('ugr_chat_session', sessionId);
+      removeTyping();
+      appendMessage('assistant', data.reply);
+    } catch (e) {
+      removeTyping();
+      appendMessage('assistant', "I'm having trouble connecting right now. Please reach out through our contact form or book a free inspection directly — our team will get back to you quickly.");
+    }
+
+    isLoading = false;
+  }
+
+  function appendMessage(role, content) {
+    const msgs = document.getElementById('messages');
+    const div = document.createElement('div');
+    const time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+    if (role === 'user') {
+      div.className = 'flex justify-end gap-3';
+      div.innerHTML = `
+        <div class="bg-brand-500/20 border border-brand-500/20 rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%]">
+          <p class="text-white">${escapeHtml(content)}</p>
+          <p class="text-xs text-gray-500 mt-1 text-right">${time}</p>
+        </div>
+      `;
+    } else {
+      // Format response with links
+      const formatted = content
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>')
+        .replace(/(book|inspection|form|contact)/gi, '<span class="text-brand-400">$1</span>');
+      div.className = 'flex gap-3';
+      div.innerHTML = `
+        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-1">UG</div>
+        <div class="bg-dark-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%]">
+          <p class="text-gray-100 leading-relaxed">${formatted}</p>
+          <div class="flex gap-2 mt-3">
+            <a href="form.html" class="text-xs bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 px-3 py-1 rounded-lg transition-colors">Get Quote</a>
+            <a href="booking.html" class="text-xs bg-dark-600 hover:bg-dark-500 text-gray-300 px-3 py-1 rounded-lg transition-colors">Book Inspection</a>
+          </div>
+          <p class="text-xs text-gray-600 mt-2">${time}</p>
+        </div>
+      `;
+    }
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+
+    // Save to localStorage
+    const history = JSON.parse(localStorage.getItem('ugr_chat_history') || '[]');
+    history.push({ role, content, time: new Date().toISOString() });
+    localStorage.setItem('ugr_chat_history', JSON.stringify(history.slice(-50)));
+  }
+
+  function showTyping() {
+    const msgs = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.id = 'typingIndicator';
+    div.className = 'flex gap-3';
+    div.innerHTML = `
+      <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">UG</div>
+      <div class="bg-dark-700 rounded-2xl rounded-tl-none px-4 py-3">
+        <div class="flex gap-1 items-center h-5">
+          <span class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></span>
+          <span class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></span>
+          <span class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></span>
+        </div>
+      </div>
+    `;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function removeTyping() {
+    document.getElementById('typingIndicator')?.remove();
+  }
+
+  function clearChat() {
+    if (!confirm('Clear chat history?')) return;
+    document.getElementById('messages').innerHTML = `
+      <div class="flex gap-3">
+        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-1">UG</div>
+        <div class="bg-dark-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%]">
+          <p class="text-gray-100">Hi! 👋 Chat cleared. How can I help you?</p>
+        </div>
+      </div>
+    `;
+    sessionId = null;
+    localStorage.removeItem('ugr_chat_session');
+    localStorage.removeItem('ugr_chat_history');
+    document.getElementById('suggestions').style.display = 'flex';
+  }
+
+  function escapeHtml(text) {
+    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Restore history from localStorage on load
+  const savedHistory = JSON.parse(localStorage.getItem('ugr_chat_history') || '[]');
+  if (savedHistory.length > 0) {
+    document.getElementById('suggestions').style.display = 'none';
+    savedHistory.slice(-20).forEach(m => appendMessage(m.role, m.content));
+  }
+
+  document.getElementById('chatInput').focus();
+</script>
+</body>
+</html>

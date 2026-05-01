@@ -1,0 +1,61 @@
+/* United Group Restoration - Supplemental Styles */
+/* Primary styles use Tailwind CDN; this file adds custom overrides */
+
+:root {
+  --brand: #f97316;
+  --brand-dark: #ea580c;
+  --dark-900: #0a0a0f;
+  --dark-800: #111118;
+  --dark-700: #1a1a2e;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--dark-800); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* Focus ring */
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Selection color */
+::selection { background: rgba(249, 115, 22, 0.3); color: white; }
+
+/* Image loading skeleton */
+img { transition: opacity 0.3s ease; }
+img[src=""], img:not([src]) { opacity: 0; }
+
+/* Print styles for CSV-like reports */
+@media print {
+  nav, button, .no-print { display: none !important; }
+  body { background: white; color: black; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #ccc; padding: 8px; }
+}
+
+/* Mobile touch targets */
+@media (max-width: 768px) {
+  button, a[href], label[for] { min-height: 44px; min-width: 44px; }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root { --brand: #ff6b00; }
+  .border-white\/5 { border-color: rgba(255,255,255,0.2); }
+}
+
+/* Before/after gallery: stack on very small screens for readability */
+@media (max-width: 380px) {
+  .ba-card .pair { grid-template-columns: 1fr; }
+}
+
+/* Map iframe sits on dark background until loaded */
+#serviceAreaMap iframe { background: #0a0a0f; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
