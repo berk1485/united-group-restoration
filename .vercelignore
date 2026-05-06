@@ -1,8 +1,11 @@
 node_modules
 .git
 .env
+.env.local
 *.md
 server.js
 api-disabled.js
 scripts/
 render.yaml
+db/
+package-lock.json
