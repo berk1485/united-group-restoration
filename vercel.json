@@ -1,24 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
+  "public": true,
   "outputDirectory": "public",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400"
-        }
-      ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/index-redesigned.html"
-    }
-  ]
+  "cleanUrls": false
 }

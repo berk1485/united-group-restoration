@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+*.md
+server.js
+api-disabled.js
+scripts/
+render.yaml
