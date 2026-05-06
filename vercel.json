@@ -1,18 +1,17 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "npm run build || echo 'No build needed'",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
+      "source": "/",
+      "destination": "/index-redesigned.html"
+    },
     {
-      "src": "/(.*)",
-      "dest": "server.js"
+      "source": "/:path*",
+      "destination": "/index-redesigned.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
