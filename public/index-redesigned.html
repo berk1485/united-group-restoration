@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>United Group Inc. | Storm Damage & Roofing Restoration</title>
+    <meta name="description" content="Emergency storm damage restoration. 48-hour response. Insurance claims handled. Professional restoration services." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #0a0a0f; 
+            color: #fff; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ======================== ANIMATION LIBRARY ======================== */
+
+        /* Typewriter effect */
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-cursor {
+            0%, 49% { border-right-color: #ff6b35; }
+            50%, 100% { border-right-color: transparent; }
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #ff6b35;
+            white-space: nowrap;
+            animation: typewriter 4s steps(40) forwards, blink-cursor 0.75s step-end infinite;
+        }
+
+        /* Flash effect */
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .flash { animation: flash 0.6s ease-in-out; }
+        .flash-infinite { animation: flash 1.5s ease-in-out infinite; }
+
+        /* Slide in from left */
+        @keyframes slide-left {
+            from { 
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .slide-in-left { animation: slide-left 0.8s ease-out forwards; }
+
+        /* Slide in from right */
+        @keyframes slide-right {
+            from { 
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .slide-in-right { animation: slide-right 0.8s ease-out forwards; }
+
+        /* Slide up */
+        @keyframes slide-up {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .slide-up { animation: slide-up 0.6s ease-out forwards; }
+
+        /* Scale in */
+        @keyframes scale-in {
+            from { 
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .scale-in { animation: scale-in 0.6s ease-out forwards; }
+
+        /* Pulse effect */
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+                opacity: 1;
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 107, 53, 0.8);
+                opacity: 0.8;
+            }
+        }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+        /* Rotating icon */
+        @keyframes rotate-icon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .rotate-infinite { animation: rotate-icon 3s linear infinite; }
+
+        /* Floating effect */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .float { animation: float 3s ease-in-out infinite; }
+
+        /* Count up animation (JavaScript controlled) */
+        .count-up { font-weight: 700; color: #ff6b35; }
+
+        /* Glow text effect */
+        @keyframes glow-text {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 107, 53, 0.8); }
+        }
+        .glow-text { animation: glow-text 2s ease-in-out infinite; }
+
+        /* ======================== DESIGN SYSTEM ======================== */
+
+        /* Colors */
+        :root {
+            --dark-bg: #0a0a0f;
+            --dark-secondary: #111118;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #00d4ff;
+            --accent-tertiary: #ffff00;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: rgba(255, 107, 53, 0.2);
+        }
+
+        /* Typography */
+        .font-display {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        h2 { 
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h3 { 
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 700;
+        }
+
+        p { 
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* ======================== BUTTONS ======================== */
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 0;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0a0a0f;
+            background: linear-gradient(135deg, #ff6b35, #ff4500);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent-primary);
+            background: transparent;
+            border: 2px solid var(--accent-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+
+        /* ======================== SCROLLBAR ======================== */
+
+        /* Scroll progress indicator */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #00d4ff, #ffff00);
+            z-index: 100;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b35;
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00d4ff;
+        }
+
+        /* ======================== SECTIONS ======================== */
+
+        section {
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ======================== CARDS ======================== */
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.2);
+        }
+
+        /* ======================== GRADIENTS & EFFECTS ======================== */
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #ff6b35, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-box {
+            background: rgba(255, 107, 53, 0.05);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            box-shadow: inset 0 0 30px rgba(255, 107, 53, 0.1), 0 0 30px rgba(255, 107, 53, 0.1);
+        }
+
+        /* ======================== PARALLAX & POSITIONING ======================== */
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.5), transparent);
+            margin: 4rem 0;
+        }
+
+        /* ======================== RESPONSIVE ======================== */
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            p { font-size: 0.95rem; }
+            .btn-primary, .btn-secondary { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+        }
+
+        /* ======================== SCROLL ANIMATIONS ======================== */
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0f] via-[#111118] to-[#0a0a0f]">
+        
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Animated background grid -->
+            <div class="absolute inset-0 opacity-20">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#ff6b35" stroke-width="0.5" opacity="0.3"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+            </div>
+
+            <!-- Glow orbs -->
+            <div class="absolute top-10 right-20 w-96 h-96 bg-orange-600 opacity-10 blur-3xl rounded-full animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-600 opacity-5 blur-3xl rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 container mx-auto text-center px-4 py-20">
+            
+            <!-- Main Headline -->
+            <div class="mb-8">
+                <h1 class="text-white mb-4 font-display">
+                    <span class="flash-infinite" style="animation-delay: 0s;">STORM</span>
+                    <span class="flash-infinite" style="animation-delay: 0.3s;">DAMAGE</span>
+                    <span class="flash-infinite" style="animation-delay: 0.6s;">?</span>
+                </h1>
+                <h1 class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b35] to-[#ffff00] mb-4 font-display slide-in-left">
+                    WE FIX IT IN 48 HOURS
+                </h1>
+            </div>
+
+            <!-- Subheading -->
+            <p class="text-lg text-[#b0b0b0] max-w-2xl mx-auto mb-4 slide-in-right" style="animation-delay: 0.3s;">
+                Emergency restoration. Insurance claims handled. Professional contractor. <span class="text-[#ff6b35] font-bold">No hassle.</span>
+            </p>
+            <p class="text-sm text-[#d4af37] font-bold mb-12 slide-in-right" style="animation-delay: 0.4s;">
+                ✓ <a href="https://www.gaf.com/en-us/roofing-contractors/residential/usa/nj/westville/united-group-general-contractors-inc-1118303" target="_blank" class="hover:underline">Official GAF Master Elite Certified Contractor</a>
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 slide-up" style="animation-delay: 0.6s;">
+                <button class="btn-primary pulse-glow" onclick="alert('Assessment form coming soon')">Get Free Assessment</button>
+                <a href="tel:+18562548367" class="btn-secondary inline-flex">📞 Call: (856) 254-8367</a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center scale-in" style="animation-delay: 1s;">
+                <!-- Service Areas Badge -->
+                <div class="inline-block bg-gradient-to-r from-[#ff6b35] to-[#00d4ff] p-[2px]">
+                    <div class="bg-[#0a0a0f] px-6 py-3">
+                        <p class="text-sm font-bold">🚀 Serving <span class="text-[#ff6b35]">NJ & PA</span></p>
+                    </div>
+                </div>
+                <!-- GAF Official Badge -->
+                <a href="https://www.gaf.com/en-us/roofing-contractors/residential/usa/nj/westville/united-group-general-contractors-inc-1118303" target="_blank" class="inline-block bg-gradient-to-r from-[#d4af37] to-[#ffeb3b] p-[2px] hover:shadow-lg transition">
+                    <div class="bg-[#0a0a0f] px-6 py-3">
+                        <p class="text-sm font-bold">✓ Official <span class="text-[#d4af37]">GAF Contractor</span></p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 scale-in" style="animation-delay: 0.8s;">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#ff6b35] mb-2 count-up">48</div>
+                    <p class="text-sm text-[#b0b0b0]">Hour Response Time</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#00d4ff] mb-2 count-up">100%</div>
+                    <p class="text-sm text-[#b0b0b0]">Insurance Coordination</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#ffff00] mb-2 count-up">0%</div>
+                    <p class="text-sm text-[#b0b0b0]">Hidden Costs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-[#ff6b35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ==================== WHY CHOOSE US ==================== -->
+    <section class="py-20 relative">
+        <div class="container">
+            <h2 class="text-center mb-16 font-display slide-in-left">WHY US?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card slide-in-left" style="animation-delay: 0.1s;">
+                    <div class="text-5xl mb-6 rotate-infinite">⚡</div>
+                    <h3 class="mb-4 font-display">FAST RESPONSE</h3>
+                    <p>We don't slow play emergencies. You call, we respond. No days of waiting.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card slide-in-left" style="animation-delay: 0.2s;">
+                    <div class="text-5xl mb-6 rotate-infinite">🛡️</div>
+                    <h3 class="mb-4 font-display">INSURANCE EXPERT</h3>
+                    <p>We handle your claim. You don't fight with insurance companies. We do.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card slide-in-left" style="animation-delay: 0.3s;">
+                    <div class="text-5xl mb-6 rotate-infinite">💰</div>
+                    <h3 class="mb-4 font-display">NO SURPRISES</h3>
+                    <p>What we quote is what you pay. No hidden fees. No upsells. Transparent pricing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="py-20 relative">
+        <div class="container">
+            <h2 class="text-center mb-16 font-display slide-in-left">OUR SERVICES</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="card slide-up" style="animation-delay: 0s;">
+                    <div class="text-6xl mb-6">🏠</div>
+                    <h3 class="font-display mb-3">ROOF REPAIR</h3>
+                    <p class="text-sm">Storm damage, leaks, replacements. We fix it right.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card slide-up" style="animation-delay: 0.1s;">
+                    <div class="text-6xl mb-6">💧</div>
+                    <h3 class="font-display mb-3">WATER DAMAGE</h3>
+                    <p class="text-sm">Flooded basements, burst pipes, emergency drying.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-6xl mb-6">🔍</div>
+                    <h3 class="font-display mb-3">ASSESSMENT</h3>
+                    <p class="text-sm">Professional damage reports. Insurance-ready documentation.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="card slide-up" style="animation-delay: 0.3s;">
+                    <div class="text-6xl mb-6">📋</div>
+                    <h3 class="font-display mb-3">INSURANCE CLAIMS</h3>
+                    <p class="text-sm">We handle the paperwork. You get paid. Simple.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section class="py-20 relative">
+        <div class="container">
+            <h2 class="text-center mb-16 font-display slide-in-left">HOW IT WORKS</h2>
+
+            <div class="relative">
+                <!-- Timeline connector -->
+                <div class="hidden md:block absolute top-1/4 left-0 right-0 h-1 bg-gradient-to-r from-[#ff6b35] via-[#00d4ff] to-[#ffff00]" style="transform: translateY(-50%);"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="slide-up" style="animation-delay: 0s;">
+                        <div class="bg-[#ff6b35] w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 pulse-glow">1</div>
+                        <h3 class="text-center font-display mb-3">EMERGENCY CALL</h3>
+                        <p class="text-center text-sm">You call. We answer. Fast.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="slide-up" style="animation-delay: 0.1s;">
+                        <div class="bg-[#00d4ff] w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 pulse-glow" style="animation-delay: 0.5s;">2</div>
+                        <h3 class="text-center font-display mb-3">ASSESSMENT</h3>
+                        <p class="text-center text-sm">We inspect. We document. We plan.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="slide-up" style="animation-delay: 0.2s;">
+                        <div class="bg-[#ffff00] w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-[#0a0a0f] mx-auto mb-4 pulse-glow" style="animation-delay: 1s;">3</div>
+                        <h3 class="text-center font-display mb-3">INSURANCE</h3>
+                        <p class="text-center text-sm">We file. We negotiate. We close.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="slide-up" style="animation-delay: 0.3s;">
+                        <div class="bg-[#ff6b35] w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 pulse-glow" style="animation-delay: 1.5s;">4</div>
+                        <h3 class="text-center font-display mb-3">FIX & CLOSE</h3>
+                        <p class="text-center text-sm">We work. You're happy. Done.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="py-20 relative overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f]"></div>
+        <div class="absolute inset-0 opacity-30">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#pattern)" />
+            </svg>
+        </div>
+
+        <div class="container relative z-10 text-center">
+            <h2 class="font-display mb-6 glow-text">YOUR NEXT STEP?</h2>
+            <p class="text-xl max-w-2xl mx-auto mb-12">Stop thinking about it. Stop waiting. Get your damage assessed in 48 hours. It's free. It's fast. Let's go.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary pulse-glow" onclick="document.getElementById('assessment-form').scrollIntoView({behavior: 'smooth'})">Get Free Assessment</button>
+                <a href="tel:+18562548367" class="btn-secondary inline-flex">📞 Call (856) 254-8367</a>
+                <a href="mailto:Berkakin444@icloud.com" class="btn-secondary inline-flex">📧 Email Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[#111118] border-t-2 border-[#ff6b35] py-12">
+        <div class="container">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-display text-[#ff6b35] mb-4">UNITED GROUP</h4>
+                    <p class="text-sm text-[#b0b0b0]">Emergency restoration. Professional contractors. No nonsense.</p>
+                    <p class="text-sm text-[#d4af37] font-bold mt-2">✓ GAF Master Elite Certified</p>
+                    <p class="text-sm text-[#b0b0b0]">Serving NJ & PA</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-[#ff6b35]">Services</h4>
+                    <ul class="text-sm text-[#b0b0b0] space-y-2">
+                        <li>Roof Repair</li>
+                        <li>Water Damage</li>
+                        <li>Emergency Assessment</li>
+                        <li>Insurance Claims</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-[#ff6b35]">Credentials</h4>
+                    <ul class="text-sm text-[#b0b0b0] space-y-2">
+                        <li>✓ GAF Master Elite</li>
+                        <li>✓ Fully Insured & Bonded</li>
+                        <li>✓ Insurance Experts</li>
+                        <li>✓ Professional Team</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-[#ff6b35]">Contact</h4>
+                    <p class="text-sm text-[#b0b0b0] mb-2">📞 <a href="tel:+18562548367" class="text-[#ff6b35] hover:underline">(856) 254-8367</a></p>
+                    <p class="text-sm text-[#b0b0b0] mb-2">✉️ <a href="mailto:Berkakin444@icloud.com" class="text-[#ff6b35] hover:underline">Berkakin444@icloud.com</a></p>
+                    <p class="text-sm text-[#b0b0b0] mb-2">📍 1000 Delsea Dr I-4, Westville, NJ</p>
+                    <p class="text-sm text-[#b0b0b0] mb-2">Serving NJ & PA</p>
+                    <p class="text-xs text-[#d4af37] mt-2"><a href="https://www.gaf.com/en-us/roofing-contractors/residential/usa/nj/westville/united-group-general-contractors-inc-1118303" target="_blank" class="hover:underline">✓ Official GAF Contractor</a></p>
+                </div>
+            </div>
+            <div class="border-t border-[#333] pt-8 text-center text-sm text-[#b0b0b0]">
+                <p>&copy; 2026 United Group Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Count up animation for numbers
+        function countUp(element, target, duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const interval = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(interval);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Trigger count ups when in view
+        const countElements = document.querySelectorAll('.count-up');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = 'true';
+                    const target = parseInt(entry.target.textContent);
+                    countUp(entry.target, target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        countElements.forEach(el => countObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Button interactions
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+
+</body>
+</html>
