@@ -1,16 +1,23 @@
 {
   "version": 2,
-  "buildCommand": "npm run build || echo 'No build needed'",
+  "buildCommand": "echo 'Static site - no build needed'",
   "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
     {
       "source": "/",
-      "destination": "/index-redesigned.html"
-    },
-    {
-      "source": "/:path*",
       "destination": "/index-redesigned.html"
     }
   ]
