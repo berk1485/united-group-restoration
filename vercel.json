@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "builds": [
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
     {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index-redesigned.html"
+      "source": "/",
+      "destination": "/index-redesigned.html"
     }
   ]
 }
