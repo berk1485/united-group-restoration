@@ -1,0 +1,11 @@
+[build]
+  publish = "public"
+  command = "echo 'Static site - no build needed'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index-redesigned.html"
+  status = 200
+
+[context.production]
+  environment = { ENVIRONMENT = "production" }
