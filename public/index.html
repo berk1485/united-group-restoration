@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>United Group - Storm Damage</title>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.86/build/spline-viewer.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #0a1428; color: #fff; line-height: 1.6; }
         html { scroll-behavior: smooth; }
 
-        header { position: sticky; top: 0; background: rgba(10,20,40,0.98); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 2px solid #00a8ff; }
+        #spline-section { position: relative; width: 100%; height: 100vh; background: #000; }
+        spline-viewer { width: 100%; height: 100%; display: block; }
+
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,20,40,0.98); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 2px solid #00a8ff; }
         .logo { font-size: 1.5rem; font-weight: 900; color: #00a8ff; }
         nav a { color: #fff; text-decoration: none; margin-left: 40px; font-weight: 700; }
 
         section { padding: 80px 40px; }
 
-        .hero { background: linear-gradient(135deg, #0a1428 0%, #1e5a8e 100%); text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .hero h1 { font-size: 3.5rem; color: #00a8ff; margin-bottom: 20px; }
-        .hero p { font-size: 1.3rem; color: #aaa; }
+        .hero-text { background: linear-gradient(135deg, #0a1428 0%, #1e5a8e 100%); text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .hero-text h1 { font-size: 3.5rem; color: #00a8ff; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.3rem; color: #aaa; }
 
         h2 { font-size: 2.5rem; color: #00a8ff; text-align: center; margin-bottom: 50px; }
 
@@ -48,7 +52,7 @@
         .form-container p { color: #bbb; margin-bottom: 30px; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero-text h1 { font-size: 2.5rem; }
             .contact-info { grid-template-columns: 1fr; }
             section { padding: 40px 20px; }
             header { flex-direction: column; }
@@ -62,7 +66,12 @@
         <nav><a href="#form">Get Inspection</a></nav>
     </header>
 
-    <section class="hero">
+    <!-- 3D EARTH SECTION -->
+    <section id="spline-section">
+        <spline-viewer url="https://prod.spline.design/VG7pBD6cAIyxLv9v/scene.splinecode"></spline-viewer>
+    </section>
+
+    <section class="hero-text">
         <div>
             <h1>United Group</h1>
             <p>Professional Storm Damage Assessment & Restoration</p>
