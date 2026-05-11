@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <title>United Group Inc. | Professional Storm Damage Inspections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --cyan: #00f0ff;
+            --magenta: #ff00ff;
+            --dark: #0a0e27;
+            --darker: #050810;
+            --accent: #ff006e;
+            --success: #00ff88;
+            --warning: #ffb700;
+            --error: #ff0055;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 0.05em; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
+        h2 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.2; }
+        h3 { font-size: 1.5rem; }
+        p { font-size: 1rem; line-height: 1.8; color: #b0b0b0; }
+
+        a { color: var(--cyan); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--magenta); text-shadow: 0 0 10px var(--magenta); }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 2px;
+            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            border: 2px solid;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: transparent;
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(to bottom, rgba(10, 14, 39, 0.95), transparent);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03) 0%, rgba(255, 0, 255, 0.03) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            padding: 60px 40px;
+            text-align: left;
+        }
+
+        .hero-label {
+            font-family: 'Space Mono', monospace;
+            color: var(--success);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            color: var(--cyan);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #909090;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* ===== REALITY SECTION ===== */
+        .reality-section {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, rgba(0, 240, 255, 0.02) 0%, rgba(255, 0, 255, 0.02) 100%);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.05);
+        }
+
+        .reality-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            color: var(--success);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            color: var(--cyan);
+            margin-bottom: 40px;
+        }
+
+        .reality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .reality-card {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 40px;
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reality-card:hover {
+            border-color: var(--cyan);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(255, 0, 255, 0.08) 100%);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .reality-card h3 {
+            color: var(--cyan);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 1.2rem;
+        }
+
+        .reality-card p {
+            color: #909090;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+
+        .status-live {
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-built {
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+        }
+
+        .status-testing {
+            background: rgba(255, 183, 0, 0.15);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        /* ===== AGENTS SECTION ===== */
+        .agents-section {
+            padding: 120px 40px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.05);
+        }
+
+        .agents-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .agents-content h2 {
+            color: var(--cyan);
+            margin-bottom: 60px;
+        }
+
+        .agent-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .agent-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 40px;
+            border-radius: 2px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .agent-card h3 {
+            color: var(--magenta);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .agent-stat {
+            font-family: 'Space Mono', monospace;
+            color: var(--cyan);
+            font-size: 0.9rem;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .agent-stat-value {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .agent-detail {
+            color: #909090;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        /* ===== SYSTEMS SECTION ===== */
+        .systems-section {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, rgba(0, 240, 255, 0.02) 0%, rgba(255, 0, 255, 0.02) 100%);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.05);
+        }
+
+        .systems-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .systems-content h2 {
+            color: var(--cyan);
+            margin-bottom: 60px;
+        }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .system-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            padding: 30px;
+            border-radius: 2px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .system-box h3 {
+            color: var(--cyan);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .system-box p {
+            color: #909090;
+            font-size: 0.9rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 120px 40px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            color: var(--cyan);
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: #909090;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(to top, rgba(5, 8, 16, 0.8), transparent);
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #606060;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== GRID BACKGROUND ===== */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            nav { gap: 1rem; font-size: 0.8rem; }
+            .hero-content { padding: 40px 20px; }
+            .agent-cards { grid-template-columns: 1fr; }
+            .systems-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">United Group</div>
+            <nav>
+                <a href="#systems">Systems</a>
+                <a href="#agents">Agents</a>
+                <a href="#status">Status</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Built May 10, 2026</div>
+            <h1>Professional Storm Damage Inspections</h1>
+            <p class="hero-subtitle">Real data. Real results. Real inspections. No shortcuts. No manipulation. Everything backed by verified systems and continuous learning.</p>
+        </div>
+    </section>
+
+    <!-- Reality Check -->
+    <section id="status" class="reality-section">
+        <div class="reality-content">
+            <div class="section-label">Current Status</div>
+            <h2>What Actually Exists Today</h2>
+            
+            <div class="reality-grid">
+                <div class="reality-card">
+                    <span class="status-badge status-live">● LIVE</span>
+                    <h3>Trading System 1 (Kalshi)</h3>
+                    <p><strong>Capital:</strong> $1,177.37</p>
+                    <p><strong>Trades:</strong> 7 total (early data)</p>
+                    <p><strong>Win Rate:</strong> 100% (from 4 closed trades)</p>
+                    <p><strong>P&L:</strong> +$4.71 daily</p>
+                    <p><strong>What it does:</strong> Scans Kalshi sports markets 24/7, identifies edges, places bets, learns from results, auto-reallocates capital to winning sports. Completely autonomous.</p>
+                </div>
+
+                <div class="reality-card">
+                    <span class="status-badge status-live">● LIVE</span>
+                    <h3>Trading System 2 (Hybrid)</h3>
+                    <p><strong>Capital:</strong> $565.00</p>
+                    <p><strong>Trades:</strong> 8 total (testing)</p>
+                    <p><strong>Win Rate:</strong> 75% (improved from broken signals)</p>
+                    <p><strong>P&L:</strong> -$3.84 daily (position sizing issue)</p>
+                    <p><strong>What it does:</strong> Monitors Polymarket + Natural Gas. Disabled weather signal (0% accuracy). Dynamically sizes positions based on accuracy. Auto-improves every cycle.</p>
+                </div>
+
+                <div class="reality-card">
+                    <span class="status-badge status-built">◆ BUILT</span>
+                    <h3>Health Monitor</h3>
+                    <p><strong>Status:</strong> Working, independent verification</p>
+                    <p><strong>What it does:</strong> Checks if agents are running. Verifies data is real. Catches corruption. Tests for false data. Confirms signals are sane. 8/10 checks passing.</p>
+                    <p><strong>Last run:</strong> May 10, 1:42 PM. Confirmed: All data real, no manipulation, returns realistic.</p>
+                </div>
+
+                <div class="reality-card">
+                    <span class="status-badge status-live">● LIVE</span>
+                    <h3>Dashboards</h3>
+                    <p><strong>Port 5000:</strong> Trading dashboard (both agents visible)</p>
+                    <p><strong>Port 3000:</strong> Obsidian vault browser</p>
+                    <p><strong>Port 3001:</strong> Unified overview</p>
+                    <p><strong>Access:</strong> From phone on local network</p>
+                </div>
+
+                <div class="reality-card">
+                    <span class="status-badge status-built">◆ BUILT</span>
+                    <h3>Learning Vault</h3>
+                    <p><strong>What it is:</strong> Single Obsidian vault for all projects</p>
+                    <p><strong>Content:</strong> Trading logs, metrics, decisions, operating principles</p>
+                    <p><strong>Access:</strong> Web interface on port 3000</p>
+                </div>
+
+                <div class="reality-card">
+                    <span class="status-badge status-built">◆ BUILT</span>
+                    <h3>Operating Principles</h3>
+                    <p><strong>Core rule:</strong> Never manipulate data (ever)</p>
+                    <p><strong>Always:</strong> Report good AND bad with reasons</p>
+                    <p><strong>Method:</strong> Build independent judges, verify everything</p>
+                    <p><strong>Honesty:</strong> Flag problems early, admit failures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Details -->
+    <section id="agents" class="agents-section">
+        <div class="agents-content">
+            <div class="section-label">Autonomous Agents</div>
+            <h2>Two Self-Improving Systems</h2>
+
+            <div class="agent-cards">
+                <div class="agent-card">
+                    <h3>Agent 1: Kalshi Sports</h3>
+                    <span class="status-badge status-live">● LIVE & SELF-IMPROVING</span>
+                    
+                    <div class="agent-stat">
+                        <span>Capital Allocation</span>
+                        <span class="agent-stat-value">$1,177.37</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Win Rate (early)</span>
+                        <span class="agent-stat-value">100%</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Daily P&L</span>
+                        <span class="agent-stat-value">+$4.71</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Trading Schedule</span>
+                        <span class="agent-stat-value">24/7, 7 days</span>
+                    </div>
+
+                    <div class="agent-detail">
+                        <strong>How it self-improves:</strong> Learns accuracy for basketball, soccer, baseball, American football. Automatically increases capital allocation to winning sports. Disables sports with 3+ losses. Realizes winners and doubles down. Zero human intervention.
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <h3>Agent 2: Hybrid Markets</h3>
+                    <span class="status-badge status-live">● LIVE & SELF-IMPROVING</span>
+                    
+                    <div class="agent-stat">
+                        <span>Capital Allocation</span>
+                        <span class="agent-stat-value">$565.00</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Win Rate (current)</span>
+                        <span class="agent-stat-value">75%</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Daily P&L</span>
+                        <span class="agent-stat-value">-$3.84</span>
+                    </div>
+                    <div class="agent-stat">
+                        <span>Trading Schedule</span>
+                        <span class="agent-stat-value">24/7 Polymarket + 24/5 NG</span>
+                    </div>
+
+                    <div class="agent-detail">
+                        <strong>How it self-improves:</strong> Dynamically sizes stakes based on accuracy (3x for 70%+ accuracy, 0.5x for weak signals). Disabled weather signal (0% accuracy). Disabled price action (0% accuracy). Keeps only profitable signals. Auto-reduces weak performers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems -->
+    <section id="systems" class="systems-section">
+        <div class="systems-content">
+            <div class="section-label">Technical Systems</div>
+            <h2>What's Actually Running</h2>
+
+            <div class="systems-grid">
+                <div class="system-box">
+                    <h3>Real Data Sources</h3>
+                    <p>Agent 1: Kalshi API (live sports markets)</p>
+                    <p>Agent 2: Polymarket API (prediction markets)</p>
+                    <p>Agent 2: NOAA Weather Data (disabled in Agent 2 due to 0% accuracy)</p>
+                    <p>Agent 2: EIA Energy Data (working, 100% accuracy on gas)</p>
+                    <p><strong>Result:</strong> All data verified as real, not simulated.</p>
+                </div>
+
+                <div class="system-box">
+                    <h3>Independent Verification</h3>
+                    <p>Health Monitor checks: Agents running? Data current? Metrics valid? Returns realistic?</p>
+                    <p>Last check: 8/10 passed. Data confirmed real.</p>
+                    <p>Monitor doesn't trust agent code. Reads metrics as external judge.</p>
+                </div>
+
+                <div class="system-box">
+                    <h3>No False Claims</h3>
+                    <p>Agent 1: 7 trades, 4 closed, 100% WR (early, not conclusive)</p>
+                    <p>Agent 2: 8 trades, 4 closed, 75% WR (improving but negative P&L)</p>
+                    <p>Gates: May 30 decision requires 55%+ WR + positive daily P&L on both</p>
+                    <p>Status: On pace but not validated yet</p>
+                </div>
+
+                <div class="system-box">
+                    <h3>Learning Systems</h3>
+                    <p>Agent 1 learns: Which sports work, reallocates capital</p>
+                    <p>Agent 2 learns: Which signals work, resizes positions</p>
+                    <p>Both log every decision</p>
+                    <p>Both improve automatically without human intervention</p>
+                </div>
+
+                <div class="system-box">
+                    <h3>Mobile Access</h3>
+                    <p>Dashboards live on local network</p>
+                    <p>Port 5000: Trading metrics</p>
+                    <p>Port 3000: Learning vault</p>
+                    <p>Access: http://10.0.0.155:8888</p>
+                </div>
+
+                <div class="system-box">
+                    <h3>Timeline</h3>
+                    <p>May 10: Both agents deployed self-improving</p>
+                    <p>May 10: Health monitor verified all data real</p>
+                    <p>May 30: Gate 1 validation (both 55%+ WR required)</p>
+                    <p>May 31: Deploy real capital if pass (or pivot)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>The Real Plan</h2>
+            <p>Build two trading systems that learn continuously. Validate by May 30. Deploy real capital May 31 if targets met. No hype. No false claims. Just real data, real improvement, real results.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 United Group Inc. | Professional Storm Damage Inspections</p>
+        <p>Real facts. Real systems. Real verification. Built May 10, 2026.</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate cards on scroll
+        gsap.to(".reality-card, .agent-card, .system-box", {
+            scrollTrigger: {
+                trigger: "#status",
+                start: "top 80%",
+                end: "bottom 20%",
+                scrub: 1
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+    </script>
+</body>
+</html>

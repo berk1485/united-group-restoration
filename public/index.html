@@ -1,627 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>United Group Inc. | GAF Master Elite Storm Damage & Roofing — Westville, NJ</title>
-<meta name="description" content="GAF Master Elite roofing & storm damage restoration in Westville, NJ. Serving Haddon, Haddonfield, Westmont, Cherry Hill & all of South Jersey. Free inspections. Insurance claims handled. Call 856-254-8367." />
-<meta name="theme-color" content="#0a0a0f" />
-<link rel="icon" type="image/svg+xml" href="/images/logo-united-group.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { sans: ['Inter', 'sans-serif'] },
-        colors: {
-          brand: { 50:'#fff7ed',100:'#ffedd5',200:'#fed7aa',300:'#fdba74',400:'#fb923c',500:'#f97316',600:'#ea580c',700:'#c2410c',800:'#9a3412',900:'#7c2d12' },
-          ink:   { 950:'#06060a',900:'#0a0a0f',850:'#0d0d14',800:'#111118',750:'#141420',700:'#1a1a2e',600:'#16213e' }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Group - Storm Damage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #0a1428; color: #fff; line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+
+        header { position: sticky; top: 0; background: rgba(10,20,40,0.98); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 2px solid #00a8ff; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #00a8ff; }
+        nav a { color: #fff; text-decoration: none; margin-left: 40px; font-weight: 700; }
+
+        section { padding: 80px 40px; }
+
+        .hero { background: linear-gradient(135deg, #0a1428 0%, #1e5a8e 100%); text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .hero h1 { font-size: 3.5rem; color: #00a8ff; margin-bottom: 20px; }
+        .hero p { font-size: 1.3rem; color: #aaa; }
+
+        h2 { font-size: 2.5rem; color: #00a8ff; text-align: center; margin-bottom: 50px; }
+
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .feature { background: rgba(30,90,142,0.2); border-left: 4px solid #00a8ff; padding: 30px; }
+        .feature h4 { color: #00a8ff; margin-bottom: 10px; }
+        .feature p { color: #bbb; }
+
+        .form-container { max-width: 600px; margin: 0 auto; background: rgba(30,90,142,0.2); border: 2px solid #00a8ff; padding: 50px; border-radius: 10px; }
+        .form-container h3 { font-size: 2rem; color: #00a8ff; margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; color: #00a8ff; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; font-size: 0.9rem; }
+        input, select, textarea { width: 100%; padding: 12px; background: rgba(10,20,40,0.8); border: 2px solid #00a8ff; border-radius: 6px; color: #fff; font-family: Arial, sans-serif; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #00d4ff; }
+
+        .btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #00a8ff, #00d4ff); color: #000; border: none; border-radius: 6px; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 20px; font-size: 1rem; }
+        .btn:hover { opacity: 0.9; }
+
+        .contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; padding-top: 40px; border-top: 2px solid rgba(0,168,255,0.3); text-align: center; }
+        .contact-info h4 { color: #00a8ff; text-transform: uppercase; margin-bottom: 10px; }
+        .contact-info a { color: #fff; text-decoration: none; font-size: 1.3rem; font-weight: 800; }
+
+        footer { background: rgba(10,20,40,0.98); border-top: 2px solid #00a8ff; padding: 40px; text-align: center; color: #999; font-size: 0.9rem; }
+
+        .address-section { background: #0a1428; }
+        .form-container h3 { margin-bottom: 10px; }
+        .form-container p { color: #bbb; margin-bottom: 30px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .contact-info { grid-template-columns: 1fr; }
+            section { padding: 40px 20px; }
+            header { flex-direction: column; }
+            nav a { margin-left: 0; margin-top: 15px; }
         }
-      }
-    }
-  }
-</script>
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background:#06060a; color:#fff; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-  /* Scroll progress bar */
-  #scroll-progress {
-    position: fixed; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg,#f97316,#fb923c,#fbbf24);
-    transform-origin: 0 50%; transform: scaleX(0); z-index: 100;
-    box-shadow: 0 0 12px rgba(249,115,22,0.7);
-  }
-
-  /* Hero background */
-  .hero-bg {
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(249,115,22,0.18), transparent 60%),
-      radial-gradient(900px 500px at 0% 30%, rgba(234,88,12,0.12), transparent 55%),
-      linear-gradient(160deg,#06060a 0%,#0a0a0f 35%,#111118 70%,#1a1a2e 100%);
-  }
-  .grid-overlay {
-    background-image:
-      linear-gradient(rgba(249,115,22,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(249,115,22,0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg,#fb923c 0%,#f97316 40%,#fbbf24 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .text-stroke { -webkit-text-stroke: 1.5px #f97316; color: transparent; }
-
-  /* Buttons */
-  .btn-primary {
-    display: inline-flex; align-items:center; justify-content:center; gap:.5rem;
-    padding: 0.95rem 1.6rem; border-radius: 9999px; font-weight: 700; font-size: 0.95rem;
-    color:#0a0a0f; background: linear-gradient(135deg,#fb923c,#f97316);
-    box-shadow: 0 10px 30px -8px rgba(249,115,22,0.55), inset 0 1px 0 rgba(255,255,255,0.3);
-    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-  }
-  .btn-primary:hover { filter: brightness(1.07); box-shadow: 0 14px 40px -8px rgba(249,115,22,0.7); }
-  .btn-ghost {
-    display: inline-flex; align-items:center; justify-content:center; gap:.5rem;
-    padding: 0.9rem 1.5rem; border-radius: 9999px; font-weight: 600; font-size: 0.95rem;
-    color:#fff; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
-    transition: background .2s ease, border-color .2s ease;
-  }
-  .btn-ghost:hover { background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.5); }
-
-  /* Nav */
-  .nav-blur { backdrop-filter: blur(20px) saturate(140%); background: rgba(6,6,10,0.75); }
-
-  /* Cards */
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 1rem;
-    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
-  }
-  .card:hover {
-    border-color: rgba(249,115,22,0.4);
-    box-shadow: 0 20px 50px -20px rgba(249,115,22,0.35);
-  }
-
-  /* Service icons */
-  .icon-tile {
-    width: 56px; height: 56px; border-radius: 14px;
-    display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(135deg, rgba(249,115,22,0.18), rgba(249,115,22,0.05));
-    border: 1px solid rgba(249,115,22,0.35);
-    color:#fb923c;
-  }
-
-  /* Gallery */
-  .gallery-item { position: relative; border-radius: 1rem; overflow: hidden; cursor: pointer; background:#0a0a0f; }
-  .gallery-item .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .gallery-item img { width: 100%; height: 100%; aspect-ratio: 3/2; object-fit: cover; display:block; transition: transform .5s ease; will-change: transform; }
-  .gallery-item .overlay {
-    position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.8) 100%);
-  }
-  .gallery-item .label { position: absolute; bottom: 14px; left: 16px; right: 16px; display:flex; justify-content: space-between; align-items: end; }
-  .badge-pill {
-    display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .65rem; border-radius:9999px;
-    background: rgba(249,115,22,0.15); color:#fb923c; font-size:.7rem; font-weight:700; text-transform: uppercase; letter-spacing:.05em;
-    border:1px solid rgba(249,115,22,0.35);
-  }
-
-  /* Map */
-  .map-wrap {
-    position: relative; aspect-ratio: 16/10; border-radius: 1.25rem; overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0a0a0f 70%);
-    border: 1px solid rgba(249,115,22,0.25);
-  }
-  @media (max-width: 768px) { .map-wrap { aspect-ratio: 4/3; } }
-  .map-pin { position: absolute; width: 14px; height: 14px; border-radius: 50%; background:#f97316; box-shadow: 0 0 0 6px rgba(249,115,22,0.18), 0 0 20px rgba(249,115,22,0.6); transform: translate(-50%, -50%); }
-  .map-pin.center { background:#fbbf24; box-shadow: 0 0 0 8px rgba(251,191,36,0.18), 0 0 30px rgba(251,191,36,0.7); }
-  .map-pin::after { content:''; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(249,115,22,0.45); animation: ring 2.4s cubic-bezier(.25,.8,.25,1) infinite; }
-  @keyframes ring { 0% { transform: scale(.6); opacity: 0.9; } 100% { transform: scale(2.2); opacity: 0; } }
-
-  /* Cert badges */
-  .cert-badge {
-    display:flex; flex-direction: column; align-items:center; justify-content:center;
-    padding: 1.5rem 1rem; border-radius: 1rem;
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-    border: 1px solid rgba(249,115,22,0.25);
-    text-align:center;
-  }
-
-  /* Testimonials */
-  .star { color:#fbbf24; }
-
-  /* Hero hi-impact divider */
-  .impact-line {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(249,115,22,.6), transparent);
-  }
-
-  /* Mobile menu */
-  #nav-mobile { max-height: 0; overflow: hidden; transition: max-height .35s cubic-bezier(.2,.8,.2,1); }
-
-  /* Reduce CLS: image placeholder */
-  img { max-width: 100%; height: auto; }
-
-  /* Section title */
-  .eyebrow {
-    display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.18em; text-transform: uppercase;
-    color:#fb923c; padding:.35rem .7rem; border-radius:9999px;
-    background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3);
-  }
-  h1, h2, h3 { letter-spacing: -0.02em; }
-
-  /* Hide horizontal overflow during animations */
-  section { position: relative; }
-</style>
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">United Group</div>
+        <nav><a href="#form">Get Inspection</a></nav>
+    </header>
 
-<!-- Scroll progress -->
-<div id="scroll-progress"></div>
-
-<!-- Top contact strip -->
-<div class="bg-ink-850 border-b border-white/5 text-xs sm:text-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2 text-gray-300">
-    <div class="flex items-center gap-4">
-      <a href="tel:8562548367" class="flex items-center gap-1.5 hover:text-brand-400 transition-colors font-semibold">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-        856-254-8367
-      </a>
-      <span class="hidden sm:inline text-gray-500">·</span>
-      <span class="hidden sm:inline text-gray-400">1000 Delsea Dr Ste I-4, Westville NJ 08093</span>
-    </div>
-    <div class="flex items-center gap-3 text-gray-400">
-      <span class="hidden sm:inline">Mon–Sat 7a–7p · 24/7 Emergency</span>
-      <span class="inline-flex items-center gap-1 text-emerald-400 font-semibold">
-        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> GAF Master Elite
-      </span>
-    </div>
-  </div>
-</div>
-
-<!-- Navigation -->
-<nav class="sticky top-0 z-50 nav-blur border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-3" aria-label="United Group Inc. home">
-        <img src="/images/logo-united-group.svg" alt="United Group Inc." class="h-9 w-auto" />
-      </a>
-      <div class="hidden md:flex items-center gap-7 text-sm text-gray-300">
-        <a href="#services" class="hover:text-white transition-colors">Services</a>
-        <a href="#gallery" class="hover:text-white transition-colors">Gallery</a>
-        <a href="#service-area" class="hover:text-white transition-colors">Service Area</a>
-        <a href="#testimonials" class="hover:text-white transition-colors">Reviews</a>
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-        <a href="booking.html" class="btn-primary !py-2 !px-4 !text-sm" data-hover-lift>Book Inspection</a>
-      </div>
-      <button id="nav-toggle" class="md:hidden p-2 text-gray-300 hover:text-white" aria-label="Open menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-    </div>
-    <div id="nav-mobile" class="md:hidden">
-      <div class="py-3 flex flex-col gap-3 text-gray-300 border-t border-white/5">
-        <a href="#services" class="hover:text-white">Services</a>
-        <a href="#gallery" class="hover:text-white">Gallery</a>
-        <a href="#service-area" class="hover:text-white">Service Area</a>
-        <a href="#testimonials" class="hover:text-white">Reviews</a>
-        <a href="#contact" class="hover:text-white">Contact</a>
-        <a href="booking.html" class="btn-primary !py-2 !px-4 !text-sm self-start">Book Inspection</a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- ─── HERO ─────────────────────────────────────────────────── -->
-<section class="hero-bg relative overflow-hidden">
-  <div class="absolute inset-0 grid-overlay opacity-60 pointer-events-none"></div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-20 sm:pb-32 relative">
-    <div class="max-w-4xl">
-      <span class="eyebrow" data-hero-eyebrow>GAF Master Elite · Top 2% in North America</span>
-
-      <h1 class="mt-6 text-5xl sm:text-7xl lg:text-8xl font-black leading-[0.95]">
-        <span class="block" data-hero-line>Storm hit your roof.</span>
-        <span class="block gradient-text" data-hero-line>We hit back—</span>
-        <span class="block" data-hero-line>harder.</span>
-      </h1>
-
-      <p class="mt-8 text-lg sm:text-xl text-gray-300 max-w-2xl" data-hero-sub>
-        South Jersey's go-to crew for storm damage, hail, wind &amp; full roof replacement.
-        Insurance claims handled end-to-end. Free inspections in 24 hours.
-      </p>
-
-      <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a href="booking.html" class="btn-primary" data-hero-cta data-hover-lift>
-          Book Free Inspection
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M5 12h16"/></svg>
-        </a>
-        <a href="tel:8562548367" class="btn-ghost" data-hero-cta data-hover-lift>
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-          Call 856-254-8367
-        </a>
-      </div>
-
-      <!-- Stat strip -->
-      <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl">
-        <div data-hero-stat>
-          <div class="text-3xl sm:text-4xl font-black gradient-text" data-count="2500" data-suffix="+">0</div>
-          <div class="text-xs sm:text-sm text-gray-400 mt-1 uppercase tracking-wider">Roofs Restored</div>
+    <section class="hero">
+        <div>
+            <h1>United Group</h1>
+            <p>Professional Storm Damage Assessment & Restoration</p>
         </div>
-        <div data-hero-stat>
-          <div class="text-3xl sm:text-4xl font-black gradient-text" data-count="20" data-suffix="+">0</div>
-          <div class="text-xs sm:text-sm text-gray-400 mt-1 uppercase tracking-wider">Years Experience</div>
+    </section>
+
+    <section>
+        <h2>Why Choose Us?</h2>
+        <div class="features">
+            <div class="feature">
+                <h4>✓ GAF Certified</h4>
+                <p>Industry-leading credentials. Expert installation and assessment.</p>
+            </div>
+            <div class="feature">
+                <h4>✓ Insurance Approved</h4>
+                <p>Direct billing with all carriers. Full claims management.</p>
+            </div>
+            <div class="feature">
+                <h4>✓ 24-Hour Response</h4>
+                <p>Emergency inspections available around the clock.</p>
+            </div>
         </div>
-        <div data-hero-stat>
-          <div class="text-3xl sm:text-4xl font-black gradient-text" data-count="4.9" data-decimals="1">0</div>
-          <div class="text-xs sm:text-sm text-gray-400 mt-1 uppercase tracking-wider">Google Rating</div>
+    </section>
+
+    <section class="address-section">
+        <div class="form-container">
+            <h3>View Your Home</h3>
+            <p>Enter your address</p>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="address" placeholder="123 Main St, City, State">
+            </div>
+            <button class="btn" onclick="alert('Street View feature coming soon')">📍 View Property</button>
         </div>
-        <div data-hero-stat>
-          <div class="text-3xl sm:text-4xl font-black gradient-text" data-count="24" data-suffix="hr">0</div>
-          <div class="text-xs sm:text-sm text-gray-400 mt-1 uppercase tracking-wider">Response Time</div>
+    </section>
+
+    <section id="form">
+        <div class="form-container">
+            <h3>Free Inspection</h3>
+            <p>Professional assessment within 24 hours</p>
+            <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you within 24 hours.'); this.reset();">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email">
+                </div>
+                <div class="form-group">
+                    <label>Roof Age</label>
+                    <select><option>Select...</option><option>0-5 years</option><option>5-10</option><option>10-15</option><option>15+</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Best Time *</label>
+                    <select required><option>Select...</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Details</label>
+                    <textarea rows="4" placeholder="Describe the damage..."></textarea>
+                </div>
+                <button class="btn">Request Inspection</button>
+            </form>
+
+            <div class="contact-info">
+                <div>
+                    <h4>📞 Call</h4>
+                    <a href="tel:+1-800-555-0100">(800) 555-0100</a>
+                </div>
+                <div>
+                    <h4>✉️ Email</h4>
+                    <a href="mailto:info@unitedgroup.com">info@unitedgroup.com</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="impact-line"></div>
-</section>
+    </section>
 
-<!-- ─── SERVICES ─────────────────────────────────────────────── -->
-<section id="services" class="py-20 sm:py-28 bg-ink-900">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-2xl">
-      <span class="eyebrow" data-anim="sub">What we do</span>
-      <h2 class="mt-4 text-4xl sm:text-5xl font-black" data-anim="title">
-        Full-service <span class="gradient-text">restoration</span>, done right.
-      </h2>
-      <p class="mt-4 text-gray-400" data-anim="sub">
-        From the first inspection to the final shingle, we handle every step—and every insurance call.
-      </p>
-    </div>
-
-    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" data-services-grid>
-      <!-- Card -->
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Roof Replacement</h3>
-        <p class="mt-2 text-sm text-gray-400">GAF Master Elite installs with full system warranties. Architectural shingles, synthetic underlayment, ice & water shield — the works.</p>
-      </div>
-
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Storm Damage</h3>
-        <p class="mt-2 text-sm text-gray-400">Wind, hail, downed trees, emergency tarping. Documented inspection reports your adjuster will actually pay on.</p>
-      </div>
-
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Insurance Claims</h3>
-        <p class="mt-2 text-sm text-gray-400">We meet your adjuster on-site, handle scope disputes, and push for full replacement when partial repair won't cut it.</p>
-      </div>
-
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Siding Repair</h3>
-        <p class="mt-2 text-sm text-gray-400">Vinyl, fiber cement, wrap & flashing. Storm-grade install matched to existing color and profile.</p>
-      </div>
-
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7l9 6 9-6M3 17l9-6 9 6"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Gutters & Guards</h3>
-        <p class="mt-2 text-sm text-gray-400">Seamless aluminum, oversized 6", leaf protection. Pitched right so the next storm runs off, not in.</p>
-      </div>
-
-      <div class="card p-6" data-service-card data-hover-lift>
-        <div class="icon-tile">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z M12 14l9-5v6l-9 5-9-5V9l9 5z"/></svg>
-        </div>
-        <h3 class="mt-5 text-xl font-bold">Interior Restoration</h3>
-        <p class="mt-2 text-sm text-gray-400">Water damage, drywall, paint, and finish carpentry. Bring the inside back to spec after the leak is fixed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── GALLERY ──────────────────────────────────────────────── -->
-<section id="gallery" class="py-20 sm:py-28 bg-ink-950">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-end justify-between gap-6 flex-wrap">
-      <div class="max-w-2xl">
-        <span class="eyebrow" data-anim="sub">Real jobs · real homes</span>
-        <h2 class="mt-4 text-4xl sm:text-5xl font-black" data-anim="title">
-          Before <span class="gradient-text">→</span> After
-        </h2>
-        <p class="mt-4 text-gray-400" data-anim="sub">A few recent transformations across South Jersey.</p>
-      </div>
-      <a href="photos.html" class="btn-ghost" data-hover-lift>See full gallery →</a>
-    </div>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-gallery-grid>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/roof-replace-before.svg" alt="Roof replacement before" loading="lazy" />
-          <img src="/images/before-after/roof-replace-after.svg" alt="Roof replacement after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Roof Replacement</span><span class="text-xs text-gray-300">Westville, NJ</span></figcaption>
-      </figure>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/hail-damage-before.svg" alt="Hail damage before" loading="lazy" />
-          <img src="/images/before-after/hail-damage-after.svg" alt="Hail damage after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Hail Damage</span><span class="text-xs text-gray-300">Cherry Hill</span></figcaption>
-      </figure>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/wind-damage-before.svg" alt="Wind damage before" loading="lazy" />
-          <img src="/images/before-after/wind-damage-after.svg" alt="Wind damage after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Wind Damage</span><span class="text-xs text-gray-300">Haddon Twp</span></figcaption>
-      </figure>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/siding-repair-before.svg" alt="Siding repair before" loading="lazy" />
-          <img src="/images/before-after/siding-repair-after.svg" alt="Siding repair after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Siding</span><span class="text-xs text-gray-300">Westmont</span></figcaption>
-      </figure>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/gutter-repair-before.svg" alt="Gutter repair before" loading="lazy" />
-          <img src="/images/before-after/gutter-repair-after.svg" alt="Gutter repair after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Gutters</span><span class="text-xs text-gray-300">Haddonfield</span></figcaption>
-      </figure>
-      <figure class="gallery-item" data-gallery-item>
-        <div class="pair">
-          <img src="/images/before-after/interior-resto-before.svg" alt="Interior restoration before" loading="lazy" />
-          <img src="/images/before-after/interior-resto-after.svg" alt="Interior restoration after" loading="lazy" />
-        </div>
-        <div class="overlay"></div>
-        <figcaption class="label"><span class="badge-pill">Interior</span><span class="text-xs text-gray-300">Mt Ephraim</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SERVICE AREA / MAP ───────────────────────────────────── -->
-<section id="service-area" class="py-20 sm:py-28 bg-ink-900">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-    <div>
-      <span class="eyebrow" data-anim="sub">Service area</span>
-      <h2 class="mt-4 text-4xl sm:text-5xl font-black" data-anim="title">
-        All of <span class="gradient-text">South Jersey</span>.
-      </h2>
-      <p class="mt-4 text-gray-400" data-anim="sub">
-        Headquartered in Westville. Trucks rolling daily through Camden, Gloucester, Burlington & beyond.
-      </p>
-      <ul class="mt-8 grid grid-cols-2 gap-2 text-sm text-gray-300">
-        <li>• Westville</li><li>• Haddonfield</li>
-        <li>• Cherry Hill</li><li>• Haddon Township</li>
-        <li>• Westmont</li><li>• Audubon</li>
-        <li>• Mt Ephraim</li><li>• Collingswood</li>
-        <li>• Gloucester City</li><li>• Deptford</li>
-        <li>• Woodbury</li><li>• Sewell</li>
-      </ul>
-      <div class="mt-8">
-        <a href="booking.html" class="btn-primary" data-hover-lift>Schedule an Inspection</a>
-      </div>
-    </div>
-
-    <div class="map-wrap" data-map-pulse>
-      <!-- Stylized "map" -->
-      <svg viewBox="0 0 600 380" class="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#f97316" stop-opacity="0.25"/>
-            <stop offset="60%" stop-color="#f97316" stop-opacity="0.05"/>
-            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="600" height="380" fill="url(#mapGlow)"/>
-        <g stroke="rgba(249,115,22,0.18)" stroke-width="1" fill="none">
-          <path d="M0 80 Q 150 40 300 90 T 600 70"/>
-          <path d="M0 160 Q 150 120 300 170 T 600 150"/>
-          <path d="M0 240 Q 150 200 300 250 T 600 230"/>
-          <path d="M0 320 Q 150 280 300 330 T 600 310"/>
-          <path d="M120 0 Q 80 100 130 200 T 100 380"/>
-          <path d="M280 0 Q 240 100 290 200 T 260 380"/>
-          <path d="M440 0 Q 400 100 450 200 T 420 380"/>
-        </g>
-        <text x="50%" y="92%" text-anchor="middle" font-size="12" fill="#fb923c" font-family="Inter" font-weight="600" letter-spacing="3">SOUTH JERSEY</text>
-      </svg>
-      <div class="map-pin center" style="left:48%; top:52%"></div>
-      <div class="map-pin" style="left:30%; top:38%"></div>
-      <div class="map-pin" style="left:62%; top:34%"></div>
-      <div class="map-pin" style="left:70%; top:60%"></div>
-      <div class="map-pin" style="left:38%; top:68%"></div>
-      <div class="map-pin" style="left:22%; top:55%"></div>
-      <div class="map-pin" style="left:55%; top:74%"></div>
-      <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-        <span class="badge-pill">HQ Westville</span>
-        <span class="text-gray-400">Live coverage map</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TESTIMONIALS ─────────────────────────────────────────── -->
-<section id="testimonials" class="py-20 sm:py-28 bg-ink-950">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-2xl">
-      <span class="eyebrow" data-anim="sub">What homeowners say</span>
-      <h2 class="mt-4 text-4xl sm:text-5xl font-black" data-anim="title">
-        4.9 stars. <span class="gradient-text">Earned.</span>
-      </h2>
-    </div>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
-      <article class="card p-6" data-testimonial-card>
-        <div class="flex gap-1 text-lg">★★★★★</div>
-        <p class="mt-4 text-gray-300">"After the hail storm last spring, three contractors said 'partial repair.' United Group got us a full replacement covered. Crew was on the roof in 11 days."</p>
-        <div class="mt-5 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center font-bold text-brand-400">M</div>
-          <div>
-            <div class="font-semibold">Mike R.</div>
-            <div class="text-xs text-gray-400">Cherry Hill, NJ</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card p-6" data-testimonial-card>
-        <div class="flex gap-1 text-lg">★★★★★</div>
-        <p class="mt-4 text-gray-300">"Adjuster was lowballing us until United Group walked the roof with him. Came back with a full scope. These guys know exactly what they're doing."</p>
-        <div class="mt-5 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center font-bold text-brand-400">S</div>
-          <div>
-            <div class="font-semibold">Sarah L.</div>
-            <div class="text-xs text-gray-400">Haddonfield, NJ</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card p-6" data-testimonial-card>
-        <div class="flex gap-1 text-lg">★★★★★</div>
-        <p class="mt-4 text-gray-300">"Tree took out half our roof at 2am. Tarp on by 9am. New roof in two weeks. Cleaned up better than they found it. Real professionals."</p>
-        <div class="mt-5 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center font-bold text-brand-400">D</div>
-          <div>
-            <div class="font-semibold">Dan K.</div>
-            <div class="text-xs text-gray-400">Westmont, NJ</div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CERTIFICATIONS ───────────────────────────────────────── -->
-<section class="py-20 sm:py-24 bg-ink-900">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto">
-      <span class="eyebrow" data-anim="sub">Certified · Licensed · Insured</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-black" data-anim="title">Credentials that <span class="gradient-text">actually mean something</span>.</h2>
-    </div>
-
-    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-5">
-      <div class="cert-badge" data-cert-badge>
-        <img src="/images/gaf-master-elite.svg" alt="GAF Master Elite" class="h-16 w-auto" onerror="this.style.display='none'"/>
-        <div class="mt-3 text-sm font-bold">GAF Master Elite</div>
-        <div class="text-xs text-gray-400 mt-1">Top 2% in North America</div>
-      </div>
-      <div class="cert-badge" data-cert-badge>
-        <div class="w-16 h-16 rounded-full bg-brand-500/15 border border-brand-500/40 flex items-center justify-center text-brand-400 font-black text-xl">A+</div>
-        <div class="mt-3 text-sm font-bold">BBB Accredited</div>
-        <div class="text-xs text-gray-400 mt-1">A+ Rating</div>
-      </div>
-      <div class="cert-badge" data-cert-badge>
-        <div class="w-16 h-16 rounded-full bg-brand-500/15 border border-brand-500/40 flex items-center justify-center">
-          <svg class="w-8 h-8 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.367 2.446a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118l-3.367-2.446a1 1 0 00-1.176 0l-3.367 2.446c-.784.57-1.838-.197-1.539-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.049 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z"/></svg>
-        </div>
-        <div class="mt-3 text-sm font-bold">4.9★ Google</div>
-        <div class="text-xs text-gray-400 mt-1">Verified Reviews</div>
-      </div>
-      <div class="cert-badge" data-cert-badge>
-        <div class="w-16 h-16 rounded-full bg-brand-500/15 border border-brand-500/40 flex items-center justify-center">
-          <svg class="w-8 h-8 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <div class="mt-3 text-sm font-bold">Fully Insured</div>
-        <div class="text-xs text-gray-400 mt-1">$2M Liability</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FINAL CTA / CONTACT ──────────────────────────────────── -->
-<section id="contact" class="py-24 sm:py-32 relative overflow-hidden">
-  <div class="absolute inset-0 hero-bg"></div>
-  <div class="absolute inset-0 grid-overlay opacity-40"></div>
-  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-contact-cta>
-    <span class="eyebrow">Ready when you are</span>
-    <h2 class="mt-6 text-5xl sm:text-7xl font-black leading-[0.95]">
-      Free inspection. <br/>
-      <span class="gradient-text">No pressure.</span>
-    </h2>
-    <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-      We'll be there in 24 hours. Climb the roof, run the drone, document everything, and walk you through what's covered.
-      Not a sales pitch — just a real assessment.
-    </p>
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-      <a href="booking.html" class="btn-primary text-base !px-7 !py-4" data-hover-lift>
-        Book Free Inspection
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M5 12h16"/></svg>
-      </a>
-      <a href="tel:8562548367" class="btn-ghost text-base !px-7 !py-4" data-hover-lift>
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-        856-254-8367
-      </a>
-    </div>
-    <div class="mt-10 text-sm text-gray-400">
-      Mon–Sat 7a–7p · 24/7 Storm Emergency Line
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ───────────────────────────────────────────────── -->
-<footer class="bg-ink-950 border-t border-white/5 py-12" data-footer>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-10">
-    <div class="md:col-span-2">
-      <img src="/images/logo-united-group.svg" alt="United Group Inc." class="h-10 w-auto" />
-      <p class="mt-4 text-sm text-gray-400 max-w-md">
-        GAF Master Elite roofing & storm damage restoration. Family-run, fully licensed, fully insured.
-        Serving South Jersey since 2003.
-      </p>
-    </div>
-    <div>
-      <div class="text-sm font-bold uppercase tracking-wider text-gray-300">Contact</div>
-      <ul class="mt-3 space-y-2 text-sm text-gray-400">
-        <li><a href="tel:8562548367" class="hover:text-white">856-254-8367</a></li>
-        <li>1000 Delsea Dr, Ste I-4<br/>Westville, NJ 08093</li>
-        <li>Mon–Sat 7a–7p</li>
-      </ul>
-    </div>
-    <div>
-      <div class="text-sm font-bold uppercase tracking-wider text-gray-300">Quick Links</div>
-      <ul class="mt-3 space-y-2 text-sm text-gray-400">
-        <li><a href="#services" class="hover:text-white">Services</a></li>
-        <li><a href="#gallery" class="hover:text-white">Gallery</a></li>
-        <li><a href="booking.html" class="hover:text-white">Book Inspection</a></li>
-        <li><a href="photos.html" class="hover:text-white">All Photos</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-white/5 text-xs text-gray-500 flex flex-wrap justify-between gap-2">
-    <span>© <span id="year"></span> United Group Inc. All rights reserved.</span>
-    <span>NJ HIC #13VH00000000 · Fully Licensed & Insured</span>
-  </div>
-</footer>
-
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-
-<!-- GSAP -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="/animations.js" defer></script>
-
+    <footer>
+        &copy; 2026 United Group Inc. | GAF Certified • Insurance Approved • 24-Hour Response
+    </footer>
 </body>
 </html>

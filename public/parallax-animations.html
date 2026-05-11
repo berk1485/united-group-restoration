@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>United Group - Parallax Animation Showcase</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --navy: #001f3f;
+            --white: #ffffff;
+            --red: #d32f2f;
+            --gold: #d4af37;
+            --light-gray: #f5f5f5;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--gold); }
+
+        .demo-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ===== ANIMATION 1: DEPTH PARALLAX ===== */
+        .depth-parallax {
+            background: linear-gradient(135deg, #001f3f 0%, #002d5c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .depth-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .depth-layer-1 { z-index: 1; }
+        .depth-layer-2 { z-index: 2; }
+        .depth-layer-3 { z-index: 3; }
+
+        .depth-shape {
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--gold);
+            opacity: 0.6;
+        }
+
+        .depth-shape-1 { transform: rotate(45deg); }
+        .depth-shape-2 { border-radius: 50%; }
+        .depth-shape-3 { clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+
+        .depth-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .depth-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .depth-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        /* ===== ANIMATION 2: MORPHING SHAPES ===== */
+        .morphing-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            position: relative;
+        }
+
+        .morph-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+        }
+
+        .morph-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .morph-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .morph-content p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        /* ===== ANIMATION 3: TEXT REVEAL ===== */
+        .text-reveal-section {
+            background: linear-gradient(135deg, #d32f2f 0%, #a02020 100%);
+            position: relative;
+        }
+
+        .text-reveal-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .text-reveal-content h2 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .text-reveal-word {
+            display: inline-block;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+
+        .text-reveal-letter {
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .text-reveal-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== ANIMATION 4: STAGGERED CARDS ===== */
+        .cards-section {
+            background: linear-gradient(135deg, #002d5c 0%, #001f3f 100%);
+            position: relative;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* ===== ANIMATION 5: FLOATING ELEMENTS ===== */
+        .float-section {
+            background: linear-gradient(135deg, #1a3a52 0%, #001f3f 100%);
+            position: relative;
+        }
+
+        .float-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .float-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .float-content h2 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .float-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* ===== ANIMATION 6: GRADIENT SHIFT ===== */
+        .gradient-shift-section {
+            position: relative;
+            background: linear-gradient(45deg, #001f3f, #d32f2f, #001f3f);
+            background-size: 400% 400%;
+        }
+
+        .gradient-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .gradient-content h2 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .gradient-content p {
+            font-size: 1.2rem;
+            color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== ANIMATION 7: SCALE & FADE ===== */
+        .scale-fade-section {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .scale-item {
+            text-align: center;
+            margin: 40px 0;
+            opacity: 0;
+        }
+
+        .scale-item h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .scale-item p {
+            font-size: 1.1rem;
+            color: #ddd;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== ANIMATION 8: ROTATE & ORBIT ===== */
+        .orbit-section {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            position: relative;
+        }
+
+        .orbit-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: 40px;
+        }
+
+        .orbit-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-item {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .orbit-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .orbit-content h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .orbit-content p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* ===== DEMO CONTROLS ===== */
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+            z-index: 999;
+            max-width: 300px;
+        }
+
+        .controls h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .animation-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .animation-btn {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .animation-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateX(5px);
+        }
+
+        .animation-btn.active {
+            background: var(--gold);
+            color: #000;
+        }
+
+        footer {
+            background: #000;
+            padding: 40px;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+            color: #ccc;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">United Group</div>
+        <nav>
+            <a href="#depth">Depth</a>
+            <a href="#morph">Morph</a>
+            <a href="#reveal">Reveal</a>
+            <a href="#cards">Cards</a>
+            <a href="#float">Float</a>
+            <a href="#gradient">Gradient</a>
+            <a href="#scale">Scale</a>
+            <a href="#orbit">Orbit</a>
+        </nav>
+    </header>
+
+    <!-- ANIMATION 1: DEPTH PARALLAX -->
+    <section id="depth" class="demo-section depth-parallax">
+        <div class="depth-layer depth-layer-1">
+            <div class="depth-shape depth-shape-1"></div>
+        </div>
+        <div class="depth-layer depth-layer-2">
+            <div class="depth-shape depth-shape-2"></div>
+        </div>
+        <div class="depth-layer depth-layer-3">
+            <div class="depth-shape depth-shape-3"></div>
+        </div>
+        <div class="depth-content">
+            <h2>Depth Parallax</h2>
+            <p>Rotating shapes move at different speeds creating stunning depth effect</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 2: MORPHING SHAPES -->
+    <section id="morph" class="demo-section morphing-section">
+        <div class="morph-container">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path id="morph-path" d="M100,10 C155,10 190,45 190,100 C190,155 155,190 100,190 C45,190 10,155 10,100 C10,45 45,10 100,10" 
+                      fill="none" stroke="#d4af37" stroke-width="3"/>
+            </svg>
+        </div>
+        <div class="morph-content">
+            <h2>Morphing Shapes</h2>
+            <p>SVG shapes smoothly morph and transform as you scroll</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 3: TEXT REVEAL -->
+    <section id="reveal" class="demo-section text-reveal-section">
+        <div class="text-reveal-content">
+            <h2>
+                <span class="text-reveal-word"><span class="text-reveal-letter">T</span><span class="text-reveal-letter">e</span><span class="text-reveal-letter">x</span><span class="text-reveal-letter">t</span></span>
+                <span class="text-reveal-word"><span class="text-reveal-letter">R</span><span class="text-reveal-letter">e</span><span class="text-reveal-letter">v</span><span class="text-reveal-letter">e</span><span class="text-reveal-letter">a</span><span class="text-reveal-letter">l</span></span>
+                <span class="text-reveal-word"><span class="text-reveal-letter">A</span><span class="text-reveal-letter">n</span><span class="text-reveal-letter">i</span><span class="text-reveal-letter">m</span><span class="text-reveal-letter">a</span><span class="text-reveal-letter">t</span><span class="text-reveal-letter">i</span><span class="text-reveal-letter">o</span><span class="text-reveal-letter">n</span></span>
+            </h2>
+            <p>Each letter animates in sequence creating dynamic engagement</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 4: STAGGERED CARDS -->
+    <section id="cards" class="demo-section cards-section">
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Professional</h3>
+                <p>Expert inspections with years of industry experience</p>
+            </div>
+            <div class="card">
+                <h3>Thorough</h3>
+                <p>Comprehensive damage assessment and documentation</p>
+            </div>
+            <div class="card">
+                <h3>Reliable</h3>
+                <p>Trusted by insurance companies and property managers</p>
+            </div>
+            <div class="card">
+                <h3>Fast</h3>
+                <p>Quick turnaround times without compromising quality</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANIMATION 5: FLOATING ELEMENTS -->
+    <section id="float" class="demo-section float-section">
+        <div class="float-element" style="top: 10%; left: 10%;"></div>
+        <div class="float-element" style="top: 20%; right: 15%;"></div>
+        <div class="float-element" style="bottom: 20%; left: 20%;"></div>
+        <div class="float-element" style="bottom: 10%; right: 10%;"></div>
+        <div class="float-content">
+            <h2>Floating Elements</h2>
+            <p>Subtle floating animation creates ethereal, premium feel</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 6: GRADIENT SHIFT -->
+    <section id="gradient" class="demo-section gradient-shift-section">
+        <div class="gradient-content">
+            <h2>Gradient Shift</h2>
+            <p>Animated gradient background creates dynamic color transitions</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 7: SCALE & FADE -->
+    <section id="scale" class="demo-section scale-fade-section">
+        <div class="scale-item">
+            <h3>Scale & Fade</h3>
+            <p>Elements grow and fade in as you scroll past them</p>
+        </div>
+        <div class="scale-item">
+            <h3>Smooth Timing</h3>
+            <p>Perfectly choreographed animations synchronized with scroll</p>
+        </div>
+        <div class="scale-item">
+            <h3>Premium Feel</h3>
+            <p>Subtle effects combine for sophisticated user experience</p>
+        </div>
+    </section>
+
+    <!-- ANIMATION 8: ROTATE & ORBIT -->
+    <section id="orbit" class="demo-section orbit-section">
+        <div class="orbit-container">
+            <div class="orbit"></div>
+            <div class="orbit-center"></div>
+            <div class="orbit-item" id="orbit-1"></div>
+            <div class="orbit-item" id="orbit-2"></div>
+            <div class="orbit-item" id="orbit-3"></div>
+        </div>
+        <div class="orbit-content">
+            <h2>Orbital Animation</h2>
+            <p>Elements orbit around a central point in perfect sync</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 United Group Inc. | Professional Storm Damage Inspections</p>
+        <p><a href="#depth">View Animations</a> | <a href="/">Back to Website</a></p>
+    </footer>
+
+    <div class="controls">
+        <h4>Animation Showcase</h4>
+        <div class="animation-selector">
+            <button class="animation-btn active" data-anim="depth">Depth Parallax</button>
+            <button class="animation-btn" data-anim="morph">Morphing</button>
+            <button class="animation-btn" data-anim="reveal">Text Reveal</button>
+            <button class="animation-btn" data-anim="cards">Cards</button>
+            <button class="animation-btn" data-anim="float">Float</button>
+            <button class="animation-btn" data-anim="gradient">Gradient</button>
+            <button class="animation-btn" data-anim="scale">Scale</button>
+            <button class="animation-btn" data-anim="orbit">Orbit</button>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ANIMATION 1: DEPTH PARALLAX
+        gsap.to(".depth-shape-1", {
+            rotation: 360,
+            scrollTrigger: {
+                trigger: "#depth",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1,
+                markers: false
+            }
+        });
+
+        gsap.to(".depth-shape-2", {
+            rotation: -360,
+            scrollTrigger: {
+                trigger: "#depth",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1.5,
+                markers: false
+            }
+        });
+
+        gsap.to(".depth-shape-3", {
+            rotation: 360,
+            scrollTrigger: {
+                trigger: "#depth",
+                start: "top center",
+                end: "bottom center",
+                scrub: 0.5,
+                markers: false
+            }
+        });
+
+        // ANIMATION 2: MORPHING SHAPES
+        const morphPath = document.getElementById("morph-path");
+        const paths = [
+            "M100,10 C155,10 190,45 190,100 C190,155 155,190 100,190 C45,190 10,155 10,100 C10,45 45,10 100,10",
+            "M100,30 L150,80 L130,150 L70,150 L50,80 Z",
+            "M50,50 Q100,30 150,50 L170,100 Q150,170 100,180 Q50,170 30,100 Z",
+            "M100,10 C155,10 190,45 190,100 C190,155 155,190 100,190 C45,190 10,155 10,100 C10,45 45,10 100,10"
+        ];
+
+        let morphIndex = 0;
+        setInterval(() => {
+            gsap.to(morphPath, {
+                attr: { d: paths[morphIndex % paths.length] },
+                duration: 2,
+                ease: "sine.inOut"
+            });
+            morphIndex++;
+        }, 2000);
+
+        // ANIMATION 3: TEXT REVEAL
+        const letters = document.querySelectorAll(".text-reveal-letter");
+        gsap.from(letters, {
+            scrollTrigger: {
+                trigger: "#reveal",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.05,
+            ease: "power2.out"
+        });
+
+        // ANIMATION 4: STAGGERED CARDS
+        gsap.to(".card", {
+            scrollTrigger: {
+                trigger: "#cards",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+
+        // ANIMATION 5: FLOATING ELEMENTS
+        gsap.to(".float-element", {
+            y: -30,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.2
+        });
+
+        // ANIMATION 6: GRADIENT SHIFT
+        gsap.to("#gradient", {
+            backgroundPosition: "200% center",
+            duration: 15,
+            repeat: -1,
+            ease: "none"
+        });
+
+        // ANIMATION 7: SCALE & FADE
+        gsap.from(".scale-item", {
+            scrollTrigger: {
+                trigger: "#scale",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false
+            },
+            opacity: 0,
+            scale: 0.8,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        // ANIMATION 8: ROTATE & ORBIT
+        gsap.to("#orbit-1", {
+            rotation: 360,
+            transformOrigin: "200px 200px",
+            duration: 8,
+            repeat: -1,
+            ease: "none"
+        });
+
+        gsap.to("#orbit-2", {
+            rotation: -360,
+            transformOrigin: "200px 200px",
+            duration: 10,
+            repeat: -1,
+            ease: "none",
+            delay: 0.3
+        });
+
+        gsap.to("#orbit-3", {
+            rotation: 360,
+            transformOrigin: "200px 200px",
+            duration: 6,
+            repeat: -1,
+            ease: "none",
+            delay: 0.6
+        });
+
+        // ANIMATION SELECTOR
+        document.querySelectorAll(".animation-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".animation-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const anim = btn.dataset.anim;
+                document.querySelector(`#${anim}`).scrollIntoView({ behavior: "smooth" });
+            });
+        });
+    </script>
+</body>
+</html>

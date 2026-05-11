@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <title>United Group Inc. | Professional Storm Damage Inspections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --navy: #001f3f;
+            --white: #ffffff;
+            --red: #d32f2f;
+            --gold: #d4af37;
+            --light-gray: #f5f5f5;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+        h1 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.2; }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.3; }
+        h3 { font-size: 1.25rem; }
+        p { font-size: 1rem; line-height: 1.7; color: #555; }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+            box-shadow: 0 8px 24px rgba(211, 47, 47, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #b71c1c;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(211, 47, 47, 0.35);
+        }
+
+        .btn-secondary {
+            background: var(--navy);
+            color: white;
+            box-shadow: 0 8px 24px rgba(0, 31, 63, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: #000a1a;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 31, 63, 0.35);
+        }
+
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HERO SECTION WITH DEPTH PARALLAX ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #002d5c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-parallax {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-shape-1 { width: 300px; height: 300px; transform: rotate(45deg); }
+        .hero-shape-2 { width: 250px; height: 250px; border-radius: 50%; }
+        .hero-shape-3 { width: 350px; height: 350px; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        /* ===== FLOATING BACKGROUND ===== */
+        .float-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ===== SERVICES SECTION WITH STAGGERED CARDS ===== */
+        .services {
+            padding: 80px 20px;
+            background: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            transform: translateY(0px);
+        }
+
+        .service-card h3 {
+            color: var(--red);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* ===== TEXT REVEAL SECTION ===== */
+        .highlight-section {
+            background: linear-gradient(135deg, var(--red) 0%, #a02020 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .highlight-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            overflow: hidden;
+        }
+
+        .highlight-word {
+            display: inline-block;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .highlight-letter {
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .highlight-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        /* ===== FEATURES SECTION WITH SCALE & FADE ===== */
+        .features {
+            padding: 80px 20px;
+            background: var(--light-gray);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            color: var(--navy);
+            margin-bottom: 60px;
+        }
+
+        .feature-item {
+            text-align: center;
+            margin: 40px 0;
+            opacity: 0;
+        }
+
+        .feature-item h3 {
+            color: var(--red);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .feature-item p {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== GRADIENT SHIFT CTA ===== */
+        .cta-section {
+            padding: 100px 40px;
+            text-align: center;
+            background: linear-gradient(45deg, var(--navy), var(--red), var(--navy));
+            background-size: 400% 400%;
+            color: white;
+        }
+
+        .cta-section h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== STATS SECTION WITH MORPHING ===== */
+        .stats {
+            padding: 80px 20px;
+            background: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats h2 {
+            text-align: center;
+            color: var(--navy);
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav { gap: 1rem; font-size: 0.9rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .hero-content { padding: 20px; }
+            .highlight-section h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="float-element" style="top: 10%; left: 10%;"></div>
+    <div class="float-element" style="top: 20%; right: 15%;"></div>
+    <div class="float-element" style="bottom: 20%; left: 20%;"></div>
+    <div class="float-element" style="bottom: 10%; right: 10%;"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">United Group Inc.</div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#features">Why Us</a>
+                <a href="#cta">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO: DEPTH PARALLAX -->
+    <section class="hero">
+        <div class="hero-parallax">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="hero-shape hero-shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Professional Storm Damage Inspections</h1>
+            <p>Expert assessments you can trust. Fast turnaround. Proven results.</p>
+            <button class="btn btn-primary">Get Free Inspection</button>
+        </div>
+    </section>
+
+    <!-- SERVICES: STAGGERED CARDS -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>🏚️ Residential Inspections</h3>
+                <p>Comprehensive damage assessment for homes affected by storms, hurricanes, and weather events.</p>
+            </div>
+            <div class="service-card">
+                <h3>🏢 Commercial Inspections</h3>
+                <p>Professional evaluations for businesses, offices, and commercial properties of all sizes.</p>
+            </div>
+            <div class="service-card">
+                <h3>📋 Insurance Claims</h3>
+                <p>Complete documentation and reporting tailored for insurance company requirements.</p>
+            </div>
+            <div class="service-card">
+                <h3>🔍 Detailed Reports</h3>
+                <p>Thorough written reports with photos, measurements, and professional recommendations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT: TEXT REVEAL -->
+    <section class="highlight-section">
+        <h2>
+            <span class="highlight-word"><span class="highlight-letter">W</span><span class="highlight-letter">h</span><span class="highlight-letter">y</span></span>
+            <span class="highlight-word"><span class="highlight-letter">C</span><span class="highlight-letter">h</span><span class="highlight-letter">o</span><span class="highlight-letter">o</span><span class="highlight-letter">s</span><span class="highlight-letter">e</span></span>
+            <span class="highlight-word"><span class="highlight-letter">U</span><span class="highlight-letter">s</span></span>
+        </h2>
+        <p>20+ years of experience in storm damage assessment. Trusted by insurance companies and property owners across the region.</p>
+    </section>
+
+    <!-- FEATURES: SCALE & FADE -->
+    <section id="features" class="features">
+        <h2>What Sets Us Apart</h2>
+        <div class="feature-item">
+            <h3>✓ Professional Standards</h3>
+            <p>We adhere to the highest industry standards and best practices in damage assessment.</p>
+        </div>
+        <div class="feature-item">
+            <h3>✓ Fast Turnaround</h3>
+            <p>Most inspections completed within 48 hours of request, with full reports delivered promptly.</p>
+        </div>
+        <div class="feature-item">
+            <h3>✓ Accurate Documentation</h3>
+            <p>Detailed photos, measurements, and professional analysis ensure accurate insurance claims.</p>
+        </div>
+        <div class="feature-item">
+            <h3>✓ Expert Team</h3>
+            <p>Our inspectors are certified professionals with extensive experience and proven track records.</p>
+        </div>
+    </section>
+
+    <!-- STATS: MORPHING NUMBERS -->
+    <section class="stats">
+        <h2>Our Track Record</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5,000+</div>
+                <div class="stat-label">Inspections Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Accuracy Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24hrs</div>
+                <div class="stat-label">Average Report Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA: GRADIENT SHIFT -->
+    <section id="cta" class="cta-section">
+        <h2>Ready to Protect Your Property?</h2>
+        <p>Let United Group provide the professional damage assessment your insurance company needs. Get started today with a free consultation.</p>
+        <button class="btn btn-primary">Schedule Free Inspection</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 United Group Inc. | Professional Storm Damage Inspections</p>
+        <p><a href="tel:+1234567890">(123) 456-7890</a> | <a href="mailto:info@unitedgroup.com">info@unitedgroup.com</a></p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ===== HERO: DEPTH PARALLAX =====
+        gsap.to(".hero-shape-1", {
+            rotation: 360,
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1
+            }
+        });
+
+        gsap.to(".hero-shape-2", {
+            rotation: -360,
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1.5
+            }
+        });
+
+        gsap.to(".hero-shape-3", {
+            rotation: 360,
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top center",
+                end: "bottom center",
+                scrub: 0.5
+            }
+        });
+
+        // ===== SERVICES: STAGGERED CARDS =====
+        gsap.to(".service-card", {
+            scrollTrigger: {
+                trigger: ".services-grid",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+
+        // ===== HIGHLIGHT: TEXT REVEAL =====
+        const highlightLetters = document.querySelectorAll(".highlight-letter");
+        gsap.from(highlightLetters, {
+            scrollTrigger: {
+                trigger: ".highlight-section",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.05,
+            ease: "power2.out"
+        });
+
+        // ===== FEATURES: SCALE & FADE =====
+        gsap.from(".feature-item", {
+            scrollTrigger: {
+                trigger: ".features",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1
+            },
+            opacity: 0,
+            scale: 0.8,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        // ===== FLOATING ELEMENTS =====
+        gsap.to(".float-element", {
+            y: -30,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.2
+        });
+
+        // ===== CTA: GRADIENT SHIFT =====
+        gsap.to(".cta-section", {
+            backgroundPosition: "200% center",
+            duration: 15,
+            repeat: -1,
+            ease: "none"
+        });
+
+        // ===== STATS: NUMBER ANIMATION =====
+        gsap.from(".stat-number", {
+            scrollTrigger: {
+                trigger: ".stats",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1
+            },
+            opacity: 0,
+            scale: 0.5,
+            stagger: 0.15,
+            ease: "back.out"
+        });
+    </script>
+</body>
+</html>
