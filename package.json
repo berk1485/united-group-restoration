@@ -1,8 +1,5 @@
-﻿{
+{
   "name": "united-group-restoration",
   "version": "1.0.0",
-  "description": "United Group Restoration Website",
-  "scripts": {
-    "build": "echo 'Static site - no build needed'"
-  }
+  "description": "United Group Restoration Website"
 }
