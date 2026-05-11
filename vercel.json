@@ -1,9 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ]
+  "buildCommand": "echo 'Static site'",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false
 }
